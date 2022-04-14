@@ -5,8 +5,6 @@
         public int ProductId { get; set; }
 
         public string ProductName { get; set; }
-<<<<<<< Updated upstream
-=======
         
         public int CategoryId { get; set; }
 
@@ -23,6 +21,5 @@
         public double Price { get; set; }
 
         public string SKU { get; set; }
->>>>>>> Stashed changes
     }
 }

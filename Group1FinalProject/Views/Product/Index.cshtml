@@ -19,7 +19,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProductName)
             </th>
-            <th></th>
+	        <th>
+		        @Html.DisplayNameFor(model => model.Rating)
+	        </th>
         </tr>
     </thead>
     <tbody>
@@ -28,9 +30,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ProductId)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
+	        <td>
+		        @Html.DisplayFor(modelItem => item.ProductName) 
+	        </td>
+	        <td>
+		        @Html.DisplayFor(modelItem => item.Rating)
+	        </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |

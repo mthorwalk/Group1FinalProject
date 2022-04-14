@@ -1,18 +1,22 @@
-﻿using Group1FinalProject.Models;
+﻿using System.Data;
+using Group1FinalProject.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using Microsoft.Extensions.Configuration;
+using System.Data.SqlClient;
 
 namespace Group1FinalProject.Controllers
 {
     public class ProductController : Controller
     {
-        private static IList<Product> products = new List<Product>
-        {
-            new Product() {ProductId = 1, ProductName = "Test1"},
-            new Product() {ProductId = 2, ProductName = "Test2"}
-        };
+        private readonly IConfiguration Configuration;
 
-<<<<<<< Updated upstream
-=======
+        public ProductController(IConfiguration _configuration)
+        {
+            Configuration = _configuration;
+        }
+        private static IList<Product> products = new List<Product>();
+
         public void AddProducts()
         {
             try
@@ -37,9 +41,10 @@ namespace Group1FinalProject.Controllers
                 throw;
             }
         }
->>>>>>> Stashed changes
+        
         public IActionResult Index()
         {
+            AddProducts();
             return View(products);
         }
     }
