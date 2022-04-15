@@ -1,0 +1,68 @@
+﻿@model Group1FinalProject.Models.Cart
+@{
+	ViewData["Title"] = "Cart";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+	@{
+		int TotalItems = 0;
+	}
+	@foreach (var product in Model.CartItems)
+	{
+		TotalItems += product.Quantity;
+	}
+	<thead>
+		(@TotalItems items)
+	</thead>
+	<thead>
+	<tr>
+		<th>
+			Product Name
+		</th>
+		<th>
+			Price
+		</th>
+		<th></th>
+		<th></th>
+		<th>
+			Quantity
+		</th>
+	</tr>
+	</thead>
+	<tbody>
+	@foreach (var product in Model.CartItems)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => product.ProductName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => product.Price)
+			</td>
+			<td>
+				@Html.ActionLink("+", "IncreaseQuantity", new {productId = product.ProductId})
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => product.Quantity)
+			</td>
+			<td>
+				@Html.ActionLink("-", "DecreaseQuantity", new {productId = product.ProductId})
+			</td>
+			<td>
+				@Html.ActionLink("Delete", "DeleteProduct", new {productId = product.ProductId})
+			</td>
+
+		</tr>
+	}
+	<tr>
+		<td>Total</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td>@Html.DisplayFor(modelItem => Model.Total)</td>
+	</tr>
+	</tbody>
+</table>
