@@ -8,6 +8,8 @@ namespace Group1FinalProject.Models
         public double? total;
         public int CartId { get; set; }
         public IList<CartItem>? CartItems { get; set; }
+        
+        [System.ComponentModel.DataAnnotations.DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)] //this prints prices with two decimal places
         public double? Total
         {
             get { return CalculateTotal(); }

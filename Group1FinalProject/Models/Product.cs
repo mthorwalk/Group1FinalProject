@@ -17,7 +17,8 @@
         public double Weight { get; set; }
 
         public double Rating { get; set; }
-
+        
+        [System.ComponentModel.DataAnnotations.DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)] //this prints prices with two decimal places
         public double Price { get; set; }
 
         public string SKU { get; set; }

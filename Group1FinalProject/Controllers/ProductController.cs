@@ -30,7 +30,7 @@ namespace Group1FinalProject.Controllers
                     da.Fill(dt);
                     foreach (DataRow row in dt.Rows)
                     {
-                        products.Add(new Product(){ProductId = row.Field<int>(0), CategoryId = row.Field<int>(1), ProductName = row.Field<string>(2), Manufacturer = row.Field<string>(3), Description = row.Field<string>(4), Dimensions = row.Field<string>(5), Weight = row.Field<double>(6), Rating = row.Field<double>(7), SKU = row.Field<string>(8)});
+                        products.Add(new Product(){ProductId = row.Field<int>(0), CategoryId = row.Field<int>(1), ProductName = row.Field<string>(2), Manufacturer = row.Field<string>(3), Description = row.Field<string>(4), Dimensions = row.Field<string>(5), Weight = row.Field<double>(6), Rating = row.Field<double>(7), SKU = row.Field<string>(8), Price = row.Field<double>(9)});
                     }
                     connection.Close();
                 }
@@ -43,9 +43,9 @@ namespace Group1FinalProject.Controllers
         }
         
         public IActionResult Index()
-        {
-            AddProducts();
-            return View(products);
+        { 
+                AddProducts();
+                return View(products);
         }
     }
 }

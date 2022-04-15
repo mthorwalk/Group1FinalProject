@@ -39,7 +39,7 @@
 				@Html.DisplayFor(modelItem => product.ProductName)
 			</td>
 			<td>
-				@Html.DisplayFor(modelItem => product.Price)
+				$@Html.DisplayFor(modelItem => product.Price)
 			</td>
 			<td>
 				@Html.ActionLink("+", "IncreaseQuantity", new {productId = product.ProductId})
@@ -62,7 +62,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td>@Html.DisplayFor(modelItem => Model.Total)</td>
+		<td>$@Html.DisplayFor(modelItem => Model.Total)</td>
 	</tr>
 	</tbody>
 </table>
