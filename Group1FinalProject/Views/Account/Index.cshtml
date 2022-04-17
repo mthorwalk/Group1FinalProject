@@ -1,0 +1,99 @@
+
+@using Group1FinalProject.Models
+
+@model Group1FinalProject.Models.SignInViewModel
+@{
+    ViewData["Title"] = "SignIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+         @using (Html.BeginForm(actionName:"Index", "Account", FormMethod.Post))
+         {
+            
+                if (Model.Success == true && Model.ErrorMessage == "")
+                  {
+                      <div class="info">
+                          <span>Sign In was successful</span>
+                     </div>
+                } else if (Model.Success == false && Model.ErrorMessage != null)
+                    {  
+
+                      <h3><strong>@Model.ErrorMessage</strong></h3>
+                    }
+
+
+
+
+            <div class="form-group">
+               @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+               <div class="col-md-10">
+                  @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                  @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+               </div>
+            </div>
+            <div class="form-group">
+               @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+               <div class="col-md-10">
+                  @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                  @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+               </div>
+            </div>
+
+             <p></p>
+
+            <p>
+               @Html.ActionLink("Forgot your password?", "ForgotPassword")
+            </p>
+
+            <div class="form-row">
+
+               <div class="form-group">
+                  <input type="submit" value="  SIGN IN  " class="btn med"/>
+               </div>
+               <div class="form-group"> 
+                   <input type="button" value="CREATE AN ACCOUNT" class="btn med" onclick="location.href='@Url.Action("SignUp", "Account")'"/>
+                   
+               </div>
+
+            </div>
+
+           
+
+           }
+
+           <style>
+                input[type=submit] {
+                    background-color: #6495ED;
+                    border: none;
+                    color: white;                    
+                    padding: 12px 28px;
+                    display: inline-block;
+                    margin-bottom: 5px;
+                }
+                input[type=button] {
+                    background-color: white;
+                    color: #6495ED;    
+                    border-color: #6495ED;
+                    padding: 12px 28px;
+                    display: inline-block;
+                    margin-bottom: 5px;
+                }
+
+                .form-row {
+                    display: flex;
+                }
+
+                .form-group {
+                     padding: 1px;
+                    
+                }
+
+              /*  .form-group input {
+                     width: 50%;
+                }
+*/
+
+
+
+           </style>
