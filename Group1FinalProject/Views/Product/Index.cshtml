@@ -5,10 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>View</h1>
+<h1>Products</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -43,9 +42,6 @@
 		        @Html.DisplayFor(modelItem => item.Rating)
 	        </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }
