@@ -1,7 +1,4 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
+﻿a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
@@ -35,8 +32,8 @@ a {
 }
 
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+    font-size: 1rem;
+    line-height: inherit;
 }
 
 .footer {
@@ -47,7 +44,58 @@ button.accept-policy {
   line-height: 60px;
 }
 
+#sign-in {
+    position: absolute;
+    right: 5rem;
+}
+
 #cart {
     position: absolute;
     right: 1rem;
+}
+
+.container-fluid input[type=text] {
+    border-radius: 1rem;
+    width: 35rem;
+    position: absolute;
+    top: 9px;
+    right: 19rem;
+    text-indent: 1rem;
+    padding: 0.45rem;
+}
+
+.dropdown-button {
+    border-radius: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem; 
+    cursor: pointer;
+    width: 10rem;
+    background-color: white;
+    border: solid white;
+}
+
+.categories-dropdown:hover .dropdown-button {
+    border-radius: 1rem 1rem 0 0;
+    border: solid #00ad91;
+}
+
+.categories-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.categories-content {
+    width: 150%;
+    border-radius: 0 0 1rem 1rem;
+    background-color: #00ad91;
+    display: none;
+    position: absolute;
+}
+
+.categories-content a {
+    display: block;
+}
+
+.categories-dropdown:hover .categories-content {
+    display: block;
 }
