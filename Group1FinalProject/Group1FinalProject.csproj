@@ -32,7 +32,6 @@
     <None Include="wwwroot\images\Picture7.jpg" />
     <None Include="wwwroot\images\Picture8.jpg" />
     <None Include="wwwroot\images\Picture9.jpg" />
-    <None Include="wwwroot\images\ProductImages" />
   </ItemGroup>
 
   <ItemGroup>
