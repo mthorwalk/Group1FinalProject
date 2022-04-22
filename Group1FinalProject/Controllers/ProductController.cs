@@ -16,32 +16,44 @@ namespace Group1FinalProject.Controllers
             Configuration = _configuration;
         }
         private static IList<Product> products = new List<Product>();
+        public int max = 1;
 
         public void AddProducts()
         {
-            try
+            if (products.Count < max)
             {
-                string conString = this.Configuration.GetConnectionString("Group1FinalProject");
-                using (SqlConnection connection = new SqlConnection(conString))
+                try
                 {
-                    connection.Open();
-                    SqlDataAdapter da = new SqlDataAdapter("Select * from product", connection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    foreach (DataRow row in dt.Rows)
+                    string conString = this.Configuration.GetConnectionString("Group1FinalProject");
+                    using (SqlConnection connection = new SqlConnection(conString))
                     {
-                        products.Add(new Product(){ProductId = row.Field<int>(0), CategoryId = row.Field<int>(1), ProductName = row.Field<string>(2), Manufacturer = row.Field<string>(3), Description = row.Field<string>(4), Dimensions = row.Field<string>(5), Weight = row.Field<double>(6), Rating = row.Field<double>(7), SKU = row.Field<string>(8), Price = row.Field<double>(9)});
+                        connection.Open();
+                        SqlDataAdapter da = new SqlDataAdapter("Select * from product", connection);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            products.Add(new Product()
+                            {
+                                ProductId = row.Field<int>(0), CategoryId = row.Field<int>(1),
+                                ProductName = row.Field<string>(2), Manufacturer = row.Field<string>(3),
+                                Description = row.Field<string>(4), Dimensions = row.Field<string>(5),
+                                Weight = row.Field<double>(6), Rating = row.Field<double>(7),
+                                SKU = row.Field<string>(8), Price = row.Field<double>(9), Image = row.Field<string>(10)
+                            });
+                        }
+
+                        connection.Close();
                     }
-                    connection.Close();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
                 }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
         }
-        
+
         public IActionResult Index()
         { 
                 AddProducts();
