@@ -1,7 +1,20 @@
-﻿a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿* {
+    font-family: 'Dongle', sans-serif;
+    font-size: 1.6rem;
+}
+
+.container-fluid {
+    background-color: #1ABC9C;
+}
+
+#logo {
+    height: 2.3rem;
+}
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
 a {
@@ -47,36 +60,52 @@ button.accept-policy {
 #sign-in {
     position: absolute;
     right: 5rem;
+    border-radius: 1rem;
+    border: solid #1ABC9C;
+}
+
+#sign-in:hover {
+    background-color: #148F77;
 }
 
 #cart {
     position: absolute;
     right: 1rem;
+    border-radius: 1rem;
+    border: solid #1ABC9C;
+}
+
+#cart:hover {
+    background-color: #148F77;
 }
 
 .container-fluid input[type=text] {
+    font-size: 1.5rem;
     border-radius: 1rem;
     width: 35rem;
     position: absolute;
-    top: 9px;
+    top: 15px;
     right: 19rem;
     text-indent: 1rem;
-    padding: 0.45rem;
+    padding: 0.1rem;
+    border: solid white;
+    background-color: white;
 }
 
 .dropdown-button {
     border-radius: 1rem;
     padding: 0.5rem;
-    font-size: 1rem; 
     cursor: pointer;
     width: 10rem;
-    background-color: white;
-    border: solid white;
+    height: 70%;
+    border: solid #1ABC9C;
+    background-color: #1ABC9C;
+    color: white;
 }
 
 .categories-dropdown:hover .dropdown-button {
     border-radius: 1rem 1rem 0 0;
-    border: solid #00ad91;
+    background-color: #148F77;
 }
 
 .categories-dropdown {
@@ -87,13 +116,11 @@ button.accept-policy {
 .categories-content {
     width: 150%;
     border-radius: 0 0 1rem 1rem;
-    background-color: #00ad91;
+    background-color: white;
     display: none;
     position: absolute;
-}
-
-.categories-content a {
-    display: block;
+    z-index: 100;
+    border: solid #148F77;
 }
 
 .categories-dropdown:hover .categories-content {

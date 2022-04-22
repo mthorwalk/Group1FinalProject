@@ -9,7 +9,7 @@ namespace Group1FinalProject.Models
         public int CartId { get; set; }
         public IList<CartItem>? CartItems { get; set; }
         
-        [System.ComponentModel.DataAnnotations.DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)] //this prints prices with two decimal places
+        [System.ComponentModel.DataAnnotations.DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)] //prints prices with two decimal places
         public double? Total
         {
             get { return CalculateTotal(); }
@@ -22,7 +22,7 @@ namespace Group1FinalProject.Models
 
             foreach (CartItem i in this.CartItems)
             {
-                total += i.CalculateProductsPrice();
+                total += i.ProductsPrice;
             }
 
             return total;
