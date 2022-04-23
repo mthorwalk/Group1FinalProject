@@ -63,7 +63,8 @@ button.accept-policy {
     right: 5rem;
     border-radius: 1rem;
     border: solid #1ABC9C;
-  
+}
+
 #sign-in:hover {
     background-color: #148F77;
 }
