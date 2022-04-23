@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace Group1FinalProject.Controllers
 {
@@ -17,6 +18,7 @@ namespace Group1FinalProject.Controllers
         }
         private static IList<Product> products = new List<Product>();
         public int max = 1;
+        MySql.Data.MySqlClient.MySqlConnection conn;
 
         public void AddProducts()
         {
@@ -25,12 +27,12 @@ namespace Group1FinalProject.Controllers
                 try
                 {
                     string conString = this.Configuration.GetConnectionString("Group1FinalProject");
-                    using (SqlConnection connection = new SqlConnection(conString))
-                    {
-                        connection.Open();
-                        SqlDataAdapter da = new SqlDataAdapter("Select * from product", connection);
+                    conn = new MySqlConnection();
+                    conn.ConnectionString = conString;
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand("Select * from product", conn);
                         DataTable dt = new DataTable();
-                        da.Fill(dt);
+                        dt.Load(cmd.ExecuteReader());
                         foreach (DataRow row in dt.Rows)
                         {
                             products.Add(new Product()
@@ -43,10 +45,9 @@ namespace Group1FinalProject.Controllers
                             });
                         }
 
-                        connection.Close();
-                    }
+                        conn.Close();
                 }
-                catch (Exception e)
+                catch (MySqlException e)
                 {
                     Console.WriteLine(e);
                     throw;
