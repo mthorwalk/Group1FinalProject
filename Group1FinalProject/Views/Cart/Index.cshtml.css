@@ -1,0 +1,44 @@
+﻿.table {
+    width: 70%;
+    border: solid 0.1rem #148F77;
+    border-radius: 1rem;
+    border-collapse: separate !important;
+    display: inline-block;
+    background-color: #E1F4F0;
+}
+
+#price {
+    font-size: 1.25rem;
+}
+
+#quantity-buttons {
+    text-align: center;
+}
+
+.summary {
+    display: inline-block;
+    width: 28%;
+    padding: 0.25rem;
+    border: solid 0.1rem #148F77;
+    border-radius: 1rem;
+    margin-left: 1rem;
+    position: sticky;
+    top: 2rem;
+    background-color: #E1F4F0;
+}
+
+.summary span {
+    float: right;
+}
+
+.summary-info {
+    padding: 1rem;
+}
+
+#checkout {
+    background-color: #1ABC9C;
+    color: white;
+    border-radius: 1rem;
+    border: solid #1ABC9C;
+    width: 100%;
+}

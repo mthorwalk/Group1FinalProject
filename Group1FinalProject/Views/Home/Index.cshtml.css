@@ -1,4 +1,8 @@
-﻿#sale-img {
+﻿﻿* {
+     font-family: 'Dongle', sans-serif;
+ }
+
+#sale-img {
     width: 100%;
 }
 
@@ -7,12 +11,11 @@
     top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: "Malgun Gothic", "Monaco", monospace;
 }
 
 #percent-txt {
     text-align: center;
-    font-size: 8rem;
+    font-size: 14rem;
     font-weight: bold;
     color: white;
     text-shadow: 2px 2px 20px #000000;
@@ -22,7 +25,7 @@
 
 #sale-txt {
     text-align: center;
-    font-size: 4.25rem;
+    font-size: 8rem;
     font-weight: bold;
     color: white;
     text-shadow: 2px 2px 20px #000000;
@@ -31,6 +34,7 @@
 }
 
 #shop-btn {
-    font-size: 2rem;
+    font-size: 2.5rem;
     width: 20%;
+    border-radius: 1rem;
 }
