@@ -1,0 +1,233 @@
+﻿@model Group1FinalProject.Models.Product
+
+@{
+    ViewData["Title"] = "DetailedProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+  
+}
+
+
+@using (Html.BeginForm(actionName:"DetailedProduct", "Product", FormMethod.Post)) {
+
+<main class= "container">
+    
+    <div class="right-column">
+                
+        <div class="product-details">
+            <span>Legos</span>
+            <h1>@Model.ProductName</h1>
+             
+        </div>
+
+        <div class="product-price">
+            <span>$@Model.Price</span>
+            <br>
+        </div>
+        <div class="cartB">
+             <a href="#" class="cartButton">Add to cart</a>
+        </div>
+    </div>
+
+    <div class="left-column">
+        @*<img src= "@Url.Content(image)" alt="">*@
+        <img src = "@Url.Content(@Model.Image)" width="100" height="100" alt=""/>
+    </div>
+
+   
+</main>
+
+ <div class="About">
+        <h1>About this Item</h1>
+
+        <div class="accordion">
+            <button type="button" class="accordionButton">Desciption</button>
+            <div class="accordionContent">
+                 <p style="font-size:15px">
+                @Model.Description
+                </p>
+            </div>
+
+            <button type="button" class="accordionButton">Dimensions and Weight</button>
+            <div class="accordionContent">
+                 <p style="font-size:15px">
+                  @Model.Dimensions & @Model.Weight lbs
+                </p>
+            </div>
+
+             <button type="button" class="accordionButton">Manufacturer and SKU</button>
+            <div class="accordionContent">
+                 <p style="font-size:15px">
+                  @Model.Manufacturer & @Model.SKU
+                </p>
+            </div>
+           
+        </div>
+         
+    </div>
+
+}
+
+<style>
+   
+  html, body {
+    height: 1100px;
+    width: 100%;
+    margin: 0;
+    
+    border-bottom: 1px solid #E1E8EE;
+}
+
+ 
+  .container {
+    height: auto;
+    overflow: hidden;
+    width: 100%;
+ }
+
+ .left-column {
+   float: none;
+   display: block;
+   padding-bottom: 50px; 
+   
+ }
+ .About {
+     border-top:  1px solid #E1E8EE;
+     padding-bottom: 100px;
+    
+ }
+
+ .About h1 {
+     font-weight: 300;
+     font-size: 30px;
+     color: #43484D;
+     letter-spacing: -2px;
+     padding-top: 20px;
+     padding-bottom: 15px
+ }
+
+  .accordionButton {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      border: #ffffff;
+      cursor: pointer;
+      background: #1ABC9C;
+      color: white;
+      text-align: left;
+      transiton: background 0.2s;
+      padding-bottom: 10px;
+    
+  }
+
+  .accordionButton p {
+
+      font-size: 10px;
+
+  }
+
+  .accordionButton::after {
+      content: '\25be';
+      float: right;
+      transform: scale(1.5);
+  }
+
+  .accordionButton--active {background: #555555}
+  .accordionButotn--active::after { content: '\25b4' }
+
+  .accordionContent {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.2s;
+      padding: 0 15px;
+      font-family: sans-serif;
+      background: #eeeeee;
+
+  }
+
+
+
+ .right-column {
+    width: 35%;
+    float: right;
+ }
+ .left-column img {
+    float: none;
+    width: 400px;
+    height: 400px;
+    display: block;
+   
+ }
+ 
+ .product-details {
+  border-bottom: 1px solid #E1E8EE;
+  margin-bottom: 20px;
+}
+.product-details span {
+  font-size: 20px;
+  color: #1ABC9C;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.product-details h1 {
+  font-weight: 300;
+  font-size: 30px;
+  color: #43484D;
+  letter-spacing: -2px;
+}
+
+.product-details p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #86939E;
+  line-height: 24px;
+}
+
+  .product-price {
+  display: inline-block;
+  align-items: center;
+  padding-bottom: 20px;
+}
+ 
+.product-price span {
+  font-size: 40px;
+  font-weight: 300;
+  color: #43474D;
+  margin-right: 20px;
+  
+}
+ 
+.cartButton {
+  display: inline-block;
+  background-color: #1ABC9C;
+  border-radius: 6px;
+  font-size: 27px;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 12px 30px;
+  transition: all .5s;
+  width: 100%;
+  text-align: center;
+}
+.cart-btn:hover {
+  background-color: #43474D;
+}
+
+</style>
+
+<script>
+    document.querySelectorAll('.accordionButton').forEach(button => {
+        button.addEventListener('click', () => {
+            const accordContent = button.nextElementSibling;
+
+            button.classList.toggle('accordionButton--active');
+
+            if(button.classList.contains('accordionButton--active')) {
+                accordContent.style.maxHeight = accordContent.scrollHeight + 'px';
+            } else {
+                accordContent.style.maxHeight = 0;
+            }
+        });
+    });
+</script>
