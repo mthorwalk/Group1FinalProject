@@ -11,9 +11,7 @@
 {
 	<div class="empty-cart">
 		<p>Your cart is empty. Check out our selection!</p>
-		<form>
-			<button asp-controller="Product" asp-action="Index">Shop All Toys</button>
-		</form>
+		<button id="shop-btn">@Html.ActionLink("Shop All Toys", "Index", "Product")</button>
 	</div>
 }
 else
