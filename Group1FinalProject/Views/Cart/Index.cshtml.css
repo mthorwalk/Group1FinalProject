@@ -42,3 +42,9 @@
     border: solid #1ABC9C;
     width: 100%;
 }
+
+.empty-cart {
+    margin: auto;
+    text-align: center;
+    font-size: 2rem;
+}

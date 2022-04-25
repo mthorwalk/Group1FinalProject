@@ -5,71 +5,79 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-@{
-	int TotalItems = 0;
-}
-@foreach (var product in Model.CartItems)
-{
-	TotalItems += product.Quantity;
-}
-<h3>(@TotalItems items)</h3>
 
-<table class="table">
-	<thead>
-	<tr>
-		<th></th>
-		<th>
-			Product Name
-		</th>
-		<th>
-			Price
-		</th>
-		<th>
-			Quantity
-		</th>
-		<th></th>
-	</tr>
-	</thead>
-	<tbody>
-	@foreach (var product in Model.CartItems)
+
+@if (Model.CartItems.Count == 0)
+{
+	<div class="empty-cart">
+		<p>Your cart is empty. Check out our selection!</p>
+		<form>
+			<button asp-controller="Product" asp-action="Index">Shop All Toys</button>
+		</form>
+	</div>
+}
+else
+{
+	int TotalItems = 0;
+	
+	foreach (var product in Model.CartItems)
 	{
-		<tr>
-			<td>
-				<img src = "@Url.Content(product.Image)" width="100" height="100"/>
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => product.ProductName)
-				<div id="price">$@Html.DisplayFor(modelItem => product.Price)/ea</div>
-			</td>
-			<td>
-				$@Html.DisplayFor(modelItem => product.ProductsPrice)
-			</td>
-			<td id="quantity-buttons">
-				<span>@Html.ActionLink("+", "IncreaseQuantity", new {productId = product.ProductId})</span>
-				<span>@Html.DisplayFor(modelItem => product.Quantity)</span>
-				<span>@Html.ActionLink("-", "DecreaseQuantity", new {productId = product.ProductId})</span>
-			</td>
-			<td>
-				@Html.ActionLink("Remove", "DeleteProduct", new {productId = product.ProductId})
-			</td>
-		</tr>
+		TotalItems += product.Quantity;
 	}
-	</tbody>
-</table>
-<div class="summary">
-	<h2 id="summary-txt" class="summary-info">Summary</h2>
-	<div class="summary-info">
-		Subtotal
-		<span>$@Html.DisplayFor(modelItem => Model.Total)</span>
+	<h3>(@TotalItems items)</h3>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Product Name</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+		@foreach (var product in Model.CartItems)
+		{
+			<tr>
+				<td>
+					<img src="@Url.Content(product.Image)" width="100" height="100"/>
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => product.ProductName)
+					<div id="price">$@Html.DisplayFor(modelItem => product.Price)/ea</div>
+				</td>
+				<td>
+					$@Html.DisplayFor(modelItem => product.ProductsPrice)
+				</td>
+				<td id="quantity-buttons">
+					<span>@Html.ActionLink("+", "IncreaseQuantity", new {productId = product.ProductId})</span>
+					<span>@Html.DisplayFor(modelItem => product.Quantity)</span>
+					<span>@Html.ActionLink("-", "DecreaseQuantity", new {productId = product.ProductId})</span>
+				</td>
+				<td>
+					@Html.ActionLink("Remove", "DeleteProduct", new {productId = product.ProductId})
+				</td>
+			</tr>
+		}
+		</tbody>
+	</table>
+
+	<div class="summary">
+		<h2 id="summary-txt" class="summary-info">Summary</h2>
+		<div class="summary-info">
+			Subtotal
+			<span>$@Html.DisplayFor(modelItem => Model.Total)</span>
+		</div>
+		<div class="summary-info">
+			Shipping & Handling
+			<span>FREE</span>
+		</div>
+		<hr/>
+		<div class="summary-info">
+			Total
+			<span>$@Html.DisplayFor(modelItem => Model.Total)</span>
+		</div>
+		<button id="checkout" class="summary-info">Checkout</button>
 	</div>
-	<div class="summary-info">
-		Shipping & Handling
-		<span>FREE</span>
-	</div>
-	<hr/>
-	<div class="summary-info">
-		Total
-		<span>$@Html.DisplayFor(modelItem => Model.Total)</span>
-	</div>
-	<button id="checkout" class="summary-info">Checkout</button>
-</div>
+}
