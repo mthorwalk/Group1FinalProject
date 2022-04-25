@@ -1,4 +1,4 @@
-﻿.table {
+.table {
     width: 70%;
     border: solid 0.1rem #148F77;
     border-radius: 1rem;
@@ -41,4 +41,17 @@
     border-radius: 1rem;
     border: solid #1ABC9C;
     width: 100%;
+}
+
+.empty-cart {
+    margin: auto;
+    text-align: center;
+    font-size: 2rem;
+}
+
+#shop-btn {
+    background-color: #1ABC9C;
+    border-radius: 1rem;
+    border: solid #1ABC9C;
+    text-decoration: none;
 }

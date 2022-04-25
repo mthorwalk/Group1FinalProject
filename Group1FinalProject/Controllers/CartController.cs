@@ -8,8 +8,11 @@ namespace Group1FinalProject.Controllers
         // test data: to be deleted
         private static IList<CartItem> itemsTest = new List<CartItem>
         {
-            new CartItem() {ProductId = 3, ProductName = "Fidget Spinner", Price = 2.50},
-            new CartItem() {ProductId = 4, ProductName = "Slime", Price = 3.50}
+            new CartItem() {ProductId = 87924, ProductName = "Slime Maker Kit for Kids", Price = 12.9, Image = "/images/Picture24.jpeg"},
+            new CartItem() {ProductId = 51120, ProductName = "Squishville Mini Squishmallows 6-Pack Rainbow Dream Squad", Price = 14.97, Image = "/images/Picture6.jpeg"},
+            new CartItem() {ProductId = 51120, ProductName = "Squishville Mini Squishmallows 6-Pack Rainbow Dream Squad", Price = 14.97, Image = "/images/Picture6.jpeg"},
+            new CartItem() {ProductId = 51120, ProductName = "Squishville Mini Squishmallows 6-Pack Rainbow Dream Squad", Price = 14.97, Image = "/images/Picture6.jpeg"},
+            new CartItem() {ProductId = 51120, ProductName = "Squishville Mini Squishmallows 6-Pack Rainbow Dream Squad", Price = 14.97, Image = "/images/Picture6.jpeg"}
         };
 
         // test data: to be deleted

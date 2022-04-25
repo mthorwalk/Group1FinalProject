@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace Group1FinalProject.Controllers
 {
@@ -17,37 +18,46 @@ namespace Group1FinalProject.Controllers
         }
 
         private static IList<Product> products = new List<Product>();
-        public int max = 1;
-
-        public void AddProducts()
+        private static IList<Product> fidgets = new List<Product>();
+        private static IList<Product> funkos = new List<Product>();
+        private static IList<Product> legos = new List<Product>();
+        private static IList<Product> puzzles = new List<Product>();
+        private static IList<Product> squishmallows = new List<Product>();
+        MySql.Data.MySqlClient.MySqlConnection conn;
+        public void AddProducts(string query, IList<Product> list)
         {
-            if (products.Count < max)
+            if (list.Count < 1)
             {
                 try
                 {
                     string conString = this.Configuration.GetConnectionString("Group1FinalProject");
-                    using (SqlConnection connection = new SqlConnection(conString))
+                    conn = new MySqlConnection();
+                    conn.ConnectionString = conString;
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    DataTable dt = new DataTable();
+                    dt.Load(cmd.ExecuteReader());
+                    foreach (DataRow row in dt.Rows)
                     {
-                        connection.Open();
-                        SqlDataAdapter da = new SqlDataAdapter("Select * from product", connection);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        foreach (DataRow row in dt.Rows)
+                        list.Add(new Product()
                         {
-                            products.Add(new Product()
-                            {
-                                ProductId = row.Field<int>(0), CategoryId = row.Field<int>(1),
-                                ProductName = row.Field<string>(2), Manufacturer = row.Field<string>(3),
-                                Description = row.Field<string>(4), Dimensions = row.Field<string>(5),
-                                Weight = row.Field<double>(6), Rating = row.Field<double>(7),
-                                SKU = row.Field<string>(8), Price = row.Field<double>(9), Image = row.Field<string>(10)
-                            });
-                        }
-
-                        connection.Close();
+                            ProductId = row.Field<int>(0),
+                            CategoryId = row.Field<int>(1),
+                            ProductName = row.Field<string>(2),
+                            Manufacturer = row.Field<string>(3),
+                            Description = row.Field<string>(4),
+                            Dimensions = row.Field<string>(5),
+                            Weight = row.Field<double>(6),
+                            Rating = row.Field<double>(7),
+                            SKU = row.Field<string>(8),
+                            Price = row.Field<double>(9),
+                            Image = row.Field<string>(10)
+                        });
                     }
+
+                    conn.Close();
                 }
-                catch (Exception e)
+                catch (MySqlException e)
                 {
                     Console.WriteLine(e);
                     throw;
@@ -60,5 +70,57 @@ namespace Group1FinalProject.Controllers
             AddProducts("Select * from product",products);
             return View("Index", products);
         }
+
+        public IActionResult Fidgets()
+        {
+            AddProducts("Select * FROM product WHERE category_id = 5",fidgets);
+            return View(fidgets);
+        }
+
+        public IActionResult Funkos()
+        {
+            AddProducts("Select * FROM product WHERE category_id = 3",funkos);
+            return View(funkos);
+        }
+
+        public IActionResult Legos()
+        {
+            AddProducts("Select * FROM product WHERE category_id = 1",legos);
+            return View(legos);
+        }
+
+        public IActionResult Puzzles()
+        {
+            AddProducts("Select * FROM product WHERE category_id = 4",puzzles);
+            return View(puzzles);
+        }
+
+        public IActionResult Squishmallows()
+        {
+            AddProducts("Select * FROM product WHERE category_id = 2",squishmallows);
+            return View(squishmallows);
+        }
+        
+         public ActionResult DetailedProduct()
+        {
+            Product product = new Product();
+            product.Image = "~/images/Picture1.jpg";
+            product.ProductName = "Minecraft The Abandoned Mine 21166 Zombie Cave Playset with Action Figures (248 Pieces)";
+            product.Manufacturer = "The Lego Group";
+            product.Description = "LEGO Minecraft The Abandoned Mine (21166) brings classic Minecraft action to life in the real world as kids help the game’s leading character mine, build and explore, while trying to survive constant attacks by a variety of hostile creatures. Hands-on Minecraft mining adventures. Kids join Steve as he attempts to unearth coal, iron and diamond – while under attack from a scary zombie, creepy spider and living slime. Players must lure the hostile creatures to the cave entrance, then use a hand-operated device to bring the high-level gravel crashing down on them.";
+            product.Dimensions = "10.32 x 7.52 x 2.40 Inches";
+            product.SKU = "EB3910";
+            product.Weight = 0.97;
+            product.Price = 59.99;
+            return View(product);
+        }
+
+        [HttpPost]
+
+        public ActionResult DetailedProduct(Product product)
+        {
+            return View(product);
+        }
+        
     }
 }
