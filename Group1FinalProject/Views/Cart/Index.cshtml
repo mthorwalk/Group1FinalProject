@@ -1,4 +1,4 @@
-﻿@model Group1FinalProject.Models.Cart
+@model Group1FinalProject.Models.Cart
 @{
 	ViewData["Title"] = "Cart";
 	Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,22 +7,19 @@
 
 
 
-@if (Model.CartItems.Count == 0)
-{
+@if (Model.CartItems.Count == 0) {
 	<div class="empty-cart">
 		<p>Your cart is empty. Check out our selection!</p>
 		<button id="shop-btn">@Html.ActionLink("Shop All Toys", "Index", "Product")</button>
 	</div>
-}
-else
-{
+} else {
 	int TotalItems = 0;
 	
 	foreach (var product in Model.CartItems)
 	{
 		TotalItems += product.Quantity;
 	}
-	<h3>(@TotalItems items)</h3>
+	<h3>(TotalItems items)</h3>
 
 	<table class="table">
 		<thead>
@@ -78,3 +75,5 @@ else
 		</div>
 		<button id="checkout" class="summary-info" onclick="location.href='@Url.Action("Index", "Checkout")'">Checkout</button>
 	</div>
+
+	}
