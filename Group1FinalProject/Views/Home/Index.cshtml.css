@@ -1,0 +1,40 @@
+* {
+     font-family: 'Dongle', sans-serif;
+}
+
+#sale-img {
+    width: 100%;
+}
+
+.sale-info {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#percent-txt {
+    text-align: center;
+    font-size: 14rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 20px #000000;
+    top: 35%;
+    width: 80%;
+}
+
+#sale-txt {
+    text-align: center;
+    font-size: 8rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 20px #000000;
+    top: 50%;
+    width: 80%;
+}
+
+#shop-btn {
+    font-size: 2.5rem;
+    width: 20%;
+    border-radius: 1rem;
+}

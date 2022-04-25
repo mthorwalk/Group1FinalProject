@@ -1,20 +1,19 @@
 ﻿@model IEnumerable<Group1FinalProject.Models.Product>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "All Toys";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>View</h1>
+<h1>All Toys</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ProductId)
+                @Html.DisplayNameFor(model => model.Image)
             </th>
 	        <th>
 		        @Html.DisplayNameFor(model => model.ProductName)
@@ -31,10 +30,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductId)
+	            <img src = "@Url.Content(item.Image)" width="100" height="100"/>
             </td>
 	        <td>
-		        @Html.DisplayFor(modelItem => item.ProductName) 
+		        @Html.DisplayFor(modelItem => item.ProductName)
 	        </td>
 	        <td>
 		        $@Html.DisplayFor(modelItem => item.Price)
@@ -42,10 +41,8 @@
 	        <td>
 		        @Html.DisplayFor(modelItem => item.Rating)
 	        </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+	        <td>
+                @Html.ActionLink("Add to Cart", actionName:"add")
             </td>
         </tr>
 }

@@ -1,53 +1,129 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
+* {
+    font-family: 'Dongle', sans-serif;
+    font-size: 1.6rem;
+}
+
+.container-fluid {
+    background-color: #1ABC9C;
+}
+
+#logo {
+    height: 2.3rem;
+}
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
 a {
-  color: #0077cc;
+    color: #0077cc;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+    font-size: 1rem;
+    line-height: inherit;
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+}
+
+#sign-in {
+    position: absolute;
+    right: 5rem;
+    border-radius: 1rem;
+    border: solid #1ABC9C;
+}
+
+#sign-in:hover {
+    background-color: #148F77;
 }
 
 #cart {
     position: absolute;
     right: 1rem;
+    border-radius: 1rem;
+    border: solid #1ABC9C;
+}
+
+#cart:hover {
+    background-color: #148F77;
+}
+
+.container-fluid input[type=text] {
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    width: 35rem;
+    position: absolute;
+    top: 15px;
+    right: 19rem;
+    text-indent: 1rem;
+    padding: 0.1rem;
+    border: solid white;
+    background-color: white;
+}
+
+.dropdown-button {
+    border-radius: 1rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    width: 10rem;
+    height: 70%;
+    border: solid #1ABC9C;
+    background-color: #1ABC9C;
+    color: white;
+}
+
+.categories-dropdown:hover .dropdown-button {
+    border-radius: 1rem 1rem 0 0;
+    background-color: #148F77;
+}
+
+.categories-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.categories-content {
+    width: 150%;
+    border-radius: 0 0 1rem 1rem;
+    background-color: white;
+    display: none;
+    position: absolute;
+    z-index: 100;
+    border: solid #148F77;
+}
+
+.categories-dropdown:hover .categories-content {
+    display: block;
 }

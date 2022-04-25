@@ -7,7 +7,36 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\images\Picture1.jpg" />
+    <None Include="wwwroot\images\Picture10.jpg" />
+    <None Include="wwwroot\images\Picture11.jpg" />
+    <None Include="wwwroot\images\Picture12.jpg" />
+    <None Include="wwwroot\images\Picture13.jpg" />
+    <None Include="wwwroot\images\Picture14.jpg" />
+    <None Include="wwwroot\images\Picture15.jpg" />
+    <None Include="wwwroot\images\Picture16.jpg" />
+    <None Include="wwwroot\images\Picture17.jpg" />
+    <None Include="wwwroot\images\Picture18.jpg" />
+    <None Include="wwwroot\images\Picture19.jpg" />
+    <None Include="wwwroot\images\Picture2.jpg" />
+    <None Include="wwwroot\images\Picture20.jpg" />
+    <None Include="wwwroot\images\Picture21.jpg" />
+    <None Include="wwwroot\images\Picture22.jpg" />
+    <None Include="wwwroot\images\Picture23.jpg" />
+    <None Include="wwwroot\images\Picture24.jpg" />
+    <None Include="wwwroot\images\Picture25.jpg" />
+    <None Include="wwwroot\images\Picture3.jpg" />
+    <None Include="wwwroot\images\Picture4.jpg" />
+    <None Include="wwwroot\images\Picture5.jpg" />
+    <None Include="wwwroot\images\Picture6.jpg" />
+    <None Include="wwwroot\images\Picture7.jpg" />
+    <None Include="wwwroot\images\Picture8.jpg" />
+    <None Include="wwwroot\images\Picture9.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.2" />
+    <PackageReference Include="MySql.Data" Version="8.0.28" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 

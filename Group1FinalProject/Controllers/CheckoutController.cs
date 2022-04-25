@@ -1,9 +1,9 @@
-﻿using Group1FinalProject.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Group1FinalProject.Models;
 
 namespace Group1FinalProject.Controllers
 {
-    public class CartController : Controller
+    public class CheckoutController : Controller
     {
         // test data: to be deleted
         private static IList<CartItem> itemsTest = new List<CartItem>
@@ -16,35 +16,15 @@ namespace Group1FinalProject.Controllers
         };
 
         // test data: to be deleted
-        private static Cart cartTest = new Cart { CartId = 1, CartItems = itemsTest };
-
+        private static Checkout cartTest = new Checkout{ CheckoutId = 1, CheckoutItems = itemsTest };
         public IActionResult Index()
         {
             return View(cartTest);
         }
 
-        public IActionResult DeleteProduct(int productId)
+        public IActionResult Purchase()
         {
-            cartTest.CartItems.Remove(cartTest.CartItems.FirstOrDefault(p => p.ProductId == productId));
-            return RedirectToAction("Index");
-        }
-
-        public IActionResult IncreaseQuantity(int productId)
-        {
-            cartTest.CartItems.FirstOrDefault(p => p.ProductId == productId).Quantity++;
-            return RedirectToAction("Index");
-        }
-        public IActionResult DecreaseQuantity(int productId)
-        {
-            if (cartTest.CartItems.FirstOrDefault(p => p.ProductId == productId).Quantity == 1)
-            {
-                return DeleteProduct(productId);
-            }
-            else
-            {
-                cartTest.CartItems.FirstOrDefault(p => p.ProductId == productId).Quantity--;
-                return RedirectToAction("Index");
-            }
+            return View(cartTest);
         }
     }
 }

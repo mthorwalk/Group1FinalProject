@@ -22,5 +22,7 @@
         public double Price { get; set; }
 
         public string SKU { get; set; }
+
+        public string Image { get; set; }
     }
 }
