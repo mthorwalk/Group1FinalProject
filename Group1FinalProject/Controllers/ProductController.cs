@@ -15,6 +15,7 @@ namespace Group1FinalProject.Controllers
         {
             Configuration = _configuration;
         }
+
         private static IList<Product> products = new List<Product>();
         public int max = 1;
 
@@ -56,8 +57,8 @@ namespace Group1FinalProject.Controllers
 
         public IActionResult Index()
         { 
-                AddProducts();
-                return View(products);
+            AddProducts("Select * from product",products);
+            return View("Index", products);
         }
     }
 }

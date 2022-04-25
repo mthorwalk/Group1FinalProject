@@ -8,7 +8,7 @@ namespace Group1FinalProject.Controllers
         public ActionResult Index()
         {
             SignInViewModel signInViewModel = new SignInViewModel();
-            return View(signInViewModel);
+            return View("Index", signInViewModel);
         }
 
 
@@ -28,7 +28,7 @@ namespace Group1FinalProject.Controllers
         public ActionResult SignUp()
         {
             SignUpViewModel signUpViewModel = new SignUpViewModel();
-            return View(signUpViewModel);
+            return View("SignUp", signUpViewModel);
             
         }
         

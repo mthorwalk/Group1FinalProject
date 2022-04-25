@@ -12,17 +12,19 @@ namespace Group1FinalProjectUnitTests
         [TestMethod]
         public void CheckoutIndexView()
         {
-            var controller = new CheckoutController();
+            CheckoutController controller = new CheckoutController();
 
-            var result = controller.Index() as ViewResult;
+            ViewResult result = controller.Index() as ViewResult;
+            Assert.IsNotNull(result);
             Assert.AreEqual("Index", result.ViewName);
         }
         [TestMethod]
         public void CheckoutPurchaseView()
         {
-            var controller = new CheckoutController();
+            CheckoutController controller = new CheckoutController();
 
-            var result = controller.Purchase() as ViewResult;
+            ViewResult result = controller.Purchase() as ViewResult;
+            Assert.IsNotNull(result);
             Assert.AreEqual("Purchase", result.ViewName);
         }
     }
