@@ -20,7 +20,7 @@ namespace Group1FinalProject.Controllers
 
         public IActionResult Index()
         {
-            return View(cartTest);
+            return View("Index", cartTest);
         }
 
         public IActionResult DeleteProduct(int productId)

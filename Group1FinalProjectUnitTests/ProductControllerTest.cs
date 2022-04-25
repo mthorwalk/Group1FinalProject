@@ -6,15 +6,16 @@ using Microsoft.Extensions.Configuration;
 
 namespace Group1FinalProjectUnitTests
 {
-    [TestClass]
-    public class ProductControllerTest
-    {
-        // [TestMethod]
-        // public void TestMethod1()
-        // {
-            // var controller = new ProductController();
-            // var result = controller.Index() as ViewResult;
-            // Assert.AreEqual("Index", result.ViewName);
-        // }
-    }
+    // [TestClass]
+    // public class ProductControllerTest
+    // {
+    //    [TestMethod]
+    //    public void ProductIndexView()
+    //    {
+    //        ProductController controller = new ProductController();
+    //        var result = controller.Index() as ViewResult;
+    //        Assert.IsNotNull(result);
+    //        Assert.AreEqual("Index", result.ViewName);
+    //    }
+    // }
 }

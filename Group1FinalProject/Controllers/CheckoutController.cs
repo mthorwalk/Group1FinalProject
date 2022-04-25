@@ -17,14 +17,16 @@ namespace Group1FinalProject.Controllers
 
         // test data: to be deleted
         private static Checkout cartTest = new Checkout{ CheckoutId = 1, CheckoutItems = itemsTest };
+
         public IActionResult Index()
         {
-            return View(cartTest);
+            return View("Index", cartTest);
+
         }
 
         public IActionResult Purchase()
         {
-            return View(cartTest);
+            return View("Purchase", cartTest);
         }
     }
 }

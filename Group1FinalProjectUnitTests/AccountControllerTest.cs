@@ -7,25 +7,25 @@ using Microsoft.Extensions.Configuration;
 namespace Group1FinalProjectUnitTests
 {
     [TestClass]
-    public class CheckoutControllerTest
+    public class AccountControllerTest
     {
         [TestMethod]
-        public void CheckoutIndexView()
+        public void AccountIndexView()
         {
-            CheckoutController controller = new CheckoutController();
+            var controller = new AccountController();
 
-            ViewResult result = controller.Index() as ViewResult;
+            var result = controller.Index() as ViewResult;
             Assert.IsNotNull(result);
             Assert.AreEqual("Index", result.ViewName);
         }
         [TestMethod]
-        public void CheckoutPurchaseView()
+        public void AccountSignUpView()
         {
-            CheckoutController controller = new CheckoutController();
+            var controller = new AccountController();
 
-            ViewResult result = controller.Purchase() as ViewResult;
+            var result = controller.SignUp() as ViewResult;
             Assert.IsNotNull(result);
-            Assert.AreEqual("Purchase", result.ViewName);
+            Assert.AreEqual("SignUp", result.ViewName);
         }
     }
 }

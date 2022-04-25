@@ -16,6 +16,7 @@ namespace Group1FinalProject.Controllers
         {
             Configuration = _configuration;
         }
+
         private static IList<Product> products = new List<Product>();
         private static IList<Product> fidgets = new List<Product>();
         private static IList<Product> funkos = new List<Product>();
@@ -67,7 +68,7 @@ namespace Group1FinalProject.Controllers
         public IActionResult Index()
         { 
             AddProducts("Select * from product",products);
-            return View(products);
+            return View("Index", products);
         }
 
         public IActionResult Fidgets()
