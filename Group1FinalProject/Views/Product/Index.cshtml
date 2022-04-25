@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Group1FinalProject.Models.Product>
-
+@using System.Web
 @{
     ViewData["Title"] = "All Toys";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -33,7 +33,7 @@
 	            <img src = "@Url.Content(item.Image)" width="100" height="100"/>
             </td>
 	        <td>
-		        @Html.DisplayFor(modelItem => item.ProductName)
+		        @Html.ActionLink(item.ProductName, "DetailedProduct", item)
 	        </td>
 	        <td>
 		        $@Html.DisplayFor(modelItem => item.Price)
