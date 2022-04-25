@@ -71,5 +71,5 @@
 		Total
 		<span>$@Html.DisplayFor(modelItem => Model.Total)</span>
 	</div>
-	<button id="checkout" class="summary-info">Checkout</button>
+	<button id="checkout" class="summary-info" onclick="location.href='@Url.Action("Index", "Checkout")'">Checkout</button>
 </div>
