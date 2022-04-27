@@ -5,6 +5,12 @@ namespace Group1FinalProject.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IConfiguration Configuration;
+
+        public AccountController(IConfiguration _configuration)
+        {
+            Configuration = _configuration;
+        }
         public ActionResult Index()
         {
             SignInViewModel signInViewModel = new SignInViewModel();
@@ -38,9 +44,9 @@ namespace Group1FinalProject.Controllers
         {
             ValidationHelper validationHelper = new ValidationHelper();
             signUpViewModel = validationHelper.validateSignUp(signUpViewModel);
-            
+            DatabaseFunctions databaseFunctions = new DatabaseFunctions(Configuration);
+            databaseFunctions.AddCustomer(signUpViewModel);
             return View(signUpViewModel);
-
         }
 
 
