@@ -16,7 +16,6 @@ namespace Group1FinalProject.Controllers
         {
             Configuration = _configuration;
         }
-
         private static IList<Product> products = new List<Product>();
         private static IList<Product> fidgets = new List<Product>();
         private static IList<Product> funkos = new List<Product>();
@@ -108,8 +107,15 @@ namespace Group1FinalProject.Controllers
         
          public ActionResult DetailedProduct(Product product)
         {
+            AddProducts("Select * from product", products);
             IEnumerable<Product> result = from p in products where p.ProductName.Equals(product.ProductName) select p;
             return View(result.Cast<Product>().ElementAt(0));
+        }
+        public IActionResult AddToCart(int ProductId)
+        {
+            AddProducts("Select * from product", products);
+            IEnumerable<Product> result = from p in products where p.ProductId.Equals(ProductId) select p;
+            return RedirectToAction("AddToCart", "Cart", result.Cast<Product>().ElementAt(0));
         }
 
         //[HttpPost]

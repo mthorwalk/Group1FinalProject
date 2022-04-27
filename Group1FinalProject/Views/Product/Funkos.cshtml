@@ -42,7 +42,7 @@
 				@Html.DisplayFor(modelItem => item.Rating)
 			</td>
 			<td>
-				@Html.ActionLink("Add to Cart", actionName:"add")
+				@Html.ActionLink("Add to cart", "AddToCart", new {ProductId = (item.ProductId)})
 			</td>
 		</tr>
 	}

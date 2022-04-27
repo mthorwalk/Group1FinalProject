@@ -24,7 +24,7 @@
             <br>
         </div>
         <div class="cartB">
-             <a href="#" class="cartButton">Add to cart</a>
+             <span class="cartButton">@Html.ActionLink("Add to cart", "AddToCart", new {ProductId = @Model.ProductId})</span>
         </div>
     </div>
 

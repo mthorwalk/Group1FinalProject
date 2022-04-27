@@ -1,4 +1,5 @@
 ﻿using Group1FinalProject.Models;
+using Group1FinalProject.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Group1FinalProject.Controllers
@@ -8,11 +9,6 @@ namespace Group1FinalProject.Controllers
         // test data: to be deleted
         private static IList<CartItem> itemsTest = new List<CartItem>
         {
-            new CartItem() {ProductId = 87924, ProductName = "Slime Maker Kit for Kids", Price = 12.9, Image = "~/images/Picture24.jpg"},
-            new CartItem() {ProductId = 51120, ProductName = "Squishville Mini Squishmallows 6-Pack Rainbow Dream Squad", Price = 14.97, Image = "~/images/Picture6.jpg"},
-            new CartItem() {ProductId = 51120, ProductName = "Squishville Mini Squishmallows 6-Pack Rainbow Dream Squad", Price = 14.97, Image = "~/images/Picture6.jpg"},
-            new CartItem() {ProductId = 51120, ProductName = "Squishville Mini Squishmallows 6-Pack Rainbow Dream Squad", Price = 14.97, Image = "~/images/Picture6.jpg"},
-            new CartItem() {ProductId = 51120, ProductName = "Squishville Mini Squishmallows 6-Pack Rainbow Dream Squad", Price = 14.97, Image = "~/images/Picture6.jpg"}
         };
 
         // test data: to be deleted
@@ -45,6 +41,28 @@ namespace Group1FinalProject.Controllers
                 cartTest.CartItems.FirstOrDefault(p => p.ProductId == productId).Quantity--;
                 return RedirectToAction("Index");
             }
+        }
+        public IActionResult AddToCart(Product product)
+        {
+            CartItem ci = new CartItem() { ProductId = product.ProductId, ProductName = product.ProductName, CategoryId = product.CategoryId, Manufacturer = product.Manufacturer, 
+            Description = product.Description, Dimensions = product.Dimensions, Weight = product.Weight, Rating = product.Rating, 
+            Price = product.Price, SKU = product.SKU, Image = product.Image};
+            int contains = 0;
+            foreach(CartItem test in cartTest.CartItems)
+            {
+                if(test.ProductId == product.ProductId)
+                {
+                    contains = 1;
+                }
+            }
+            if (contains == 1) 
+            {
+                IncreaseQuantity(product.ProductId);
+            } else
+            {
+                cartTest.CartItems.Add(ci);
+            }
+            return RedirectToAction("Index");
         }
     }
 }
