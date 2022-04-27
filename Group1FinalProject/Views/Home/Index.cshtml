@@ -3,10 +3,37 @@
 }
 
 <body>
-	<div class="sale">
-		<img id="sale-img" src="/images/SquishSale.jpeg" alt="Squishmallows">
-		<div id="percent-txt" class ="sale-info">50% OFF</div>
-		<div id="sale-txt" class ="sale-info">SQUISHMALLOW SALE</div>
-		<button id="shop-btn" class="sale-info">SHOP NOW</button>
+	<div class="shop">
+		<img class="large-img" src="/images/SquishSale.jpeg" alt="Squishmallows">
+		<div id="percent-txt" class="sale-info">50% OFF</div>
+		<div id="sale-txt" class="sale-info">SQUISHMALLOW SALE</div>
+		<div class="shop-btn-pos">
+			<button class="shop-btn">SHOP NOW</button>
+		</div>
+	</div>
+	<div class="pop">
+		<h1 class="divide-txt">Popular</h1>
+		<div class="pop-element">
+			<img class="pop-img" src="/images/LegoBricks.jpg" alt="Legos"/>
+			<div id="legos-pos" class="pop-btn-pos">
+				<button id="legos-btn" class="shop-btn" onclick="location.href='@Url.Action("Legos", "Product")'">SHOP LEGOS</button>
+			</div>
+		</div>
+		<div class="pop-element">
+			<img id="puzzles-img" class="pop-img" src="/images/PuzzlePieces.jpg" alt="Puzzle pieces"/>
+			<div id="puzzles-pos" class="pop-btn-pos">
+				<button id="puzzles-btn" class="shop-btn" onclick="location.href='@Url.Action("Puzzles", "Product")'">SHOP PUZZLES</button>
+			</div>
+		</div>
+	</div> 
+	<div class="amongus">
+		<h1 class="divide-txt">Featured</h1>
+		<img class="large-img" src="/images/AmongUsHome.jpg" alt="Among us">
+		<div id="rainbow-txt" class="amongus-info">RAINBOW</div>
+		<div id="amongus-txt" class="amongus-info">AMONG US</div>
+		<div id="popit-txt" class="amongus-info">POP IT</div>
+		<div class="amongus-shop-btn-pos">
+			<button id="amongus-shop-btn" class="shop-btn">SHOP NOW</button>
+		</div>
 	</div>
 </body>

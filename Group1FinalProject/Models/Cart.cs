@@ -8,6 +8,7 @@ namespace Group1FinalProject.Models
         public double? total;
         public int CartId { get; set; }
         public IList<CartItem>? CartItems { get; set; }
+        public int? numItems = 0;
         
         [System.ComponentModel.DataAnnotations.DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)] //prints prices with two decimal places
         public double? Total
@@ -26,6 +27,24 @@ namespace Group1FinalProject.Models
             }
 
             return total;
+        }
+         
+        public int? NumItems
+        {
+            get { return CountItems(); }
+            set { numItems = value; }
+        }
+
+        public int CountItems()
+        {
+            int items = 0;
+
+            foreach (CartItem i in this.CartItems)
+            {
+                items += i.Quantity;
+            }
+
+            return items;
         }
     }
 }
