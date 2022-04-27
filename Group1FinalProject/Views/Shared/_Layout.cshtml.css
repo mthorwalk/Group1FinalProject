@@ -69,15 +69,11 @@ button.accept-policy {
     background-color: #148F77;
 }
 
-#cart {
+#cart-img {
+    height: 2.3rem;
     position: absolute;
     right: 1rem;
-    border-radius: 1rem;
-    border: solid #1ABC9C;
-}
-
-#cart:hover {
-    background-color: #148F77;
+    top: 15px;
 }
 
 .container-fluid input[type=text] {
@@ -126,4 +122,8 @@ button.accept-policy {
 
 .categories-dropdown:hover .categories-content {
     display: block;
+}
+
+#num-items {
+    text-align: center;
 }
