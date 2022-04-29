@@ -14,13 +14,13 @@
     <div class="right-column">
                 
         <div class="product-details">
-            <span>Legos</span>
+            <span>@Model.Manufacturer</span>
             <h1>@Model.ProductName</h1>
              
         </div>
 
         <div class="product-price">
-            <span>$@Model.Price</span>
+            <span>$@Model.Price.ToString(("0.00"))</span>
             <br>
         </div>
         <div class="cartB">
