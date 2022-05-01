@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using Group1FinalProject.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -43,13 +43,56 @@ namespace Group1FinalProject.Helpers
                 command.Parameters.AddWithValue("@country", signUpViewModel.Country);
                 command.ExecuteNonQuery();
                 conn.Close();
+                signUpViewModel.Success = true;
             } catch (MySqlException e)
             {
+                signUpViewModel.Success = false;
                 Console.WriteLine(e);
                 throw;
             }
           
 
+        }
+
+        public SignUpViewModel GetCustomer(SignInViewModel signInViewModel)
+        {
+            SignUpViewModel signUpViewModel = new SignUpViewModel();
+            try
+            {
+                string conString = this.Configuration.GetConnectionString("Group1FinalProject");
+                MySqlConnection conn = new MySqlConnection(conString);
+                conn.Open();
+                string query = "SELECT * FROM user WHERE email = '" + signInViewModel.Email + "' AND password= '" + signInViewModel.Password + "';";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                DataRow row = dt.Rows[0];
+                
+                 signUpViewModel = new SignUpViewModel()
+                {
+                    Password =  row["password"].ToString(),
+                    FirstName = row["FirstName"].ToString(),
+                    LastName  = row["LastName"].ToString(),
+                    Email = row["email"].ToString(),
+                    PhoneNumber = row["phone"].ToString(),
+                    Address = row["address"].ToString(),
+                    Address2 = row["address_2"].ToString(),   
+                    City = row["city"].ToString(),
+                    State = row["state"].ToString(),
+                    Zip = row["zip"].ToString(),
+                    Country = row["country"].ToString()
+
+            };
+                signUpViewModel.Success = true; 
+                return signUpViewModel;
+            } catch (MySqlException e)
+            { 
+                signUpViewModel.ErrorMessage = e.Message;
+                signUpViewModel.Success = false;
+                Console.WriteLine(e);
+                throw;
+            }
+            return signUpViewModel;
         }
         
     }

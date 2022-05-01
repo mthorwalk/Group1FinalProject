@@ -16,11 +16,8 @@
                       <div class="info">
                           <span>Sign In was successful</span>
                      </div>
-                } else if (Model.Success == false && Model.ErrorMessage != null)
-                    {  
 
-                      <h3><strong>@Model.ErrorMessage</strong></h3>
-                    }
+                } 
 
 
 
@@ -29,14 +26,14 @@
                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
                <div class="col-md-10">
                   @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                  @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                  @Html.ValidationMessageFor(m => m.Email, "", new { id = "txtEmail",@class = "text-danger" })
                </div>
             </div>
             <div class="form-group">
                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
                <div class="col-md-10">
                   @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                  @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                  @Html.ValidationMessageFor(m => m.Password, "", new { id = "txtPassword",@class = "text-danger" })
                </div>
             </div>
 
@@ -64,7 +61,7 @@
 
            <style>
                 input[type=submit] {
-                    background-color: #6495ED;
+                    background-color: #1ABC9C;
                     border: none;
                     color: white;                    
                     padding: 12px 28px;
@@ -73,8 +70,8 @@
                 }
                 input[type=button] {
                     background-color: white;
-                    color: #6495ED;    
-                    border-color: #6495ED;
+                    color: #1ABC9C;    
+                    border-color: #1ABC9C;
                     padding: 12px 28px;
                     display: inline-block;
                     margin-bottom: 5px;
@@ -82,18 +79,36 @@
 
                 .form-row {
                     display: flex;
-                }
+				}
 
                 .form-group {
-                     padding: 1px;
+                    padding: 1px;
                     
+				}
+
+				.field-validation-error {
+		            color: #ff0000;
+	            }
+
+	            .field-validation-valid {
+		            display: none;
+	            }
+
+	            .input-validation-error {
+		            border: 1px solid ##ff0000;
+		            background-color: ##FF0000;
+	            }
+
+	            .validation-summary-errors {
+		            font-weight: bold;
+		            color: #ff0000;
+	            }
+
+	            .validation-summary-valid {
+		            display: none;
                 }
 
-              /*  .form-group input {
-                     width: 50%;
+                input.input-validation-error {
+                    border: 1px solid #e80c4d !important;
                 }
-*/
-
-
-
-           </style>
+		   </style>
