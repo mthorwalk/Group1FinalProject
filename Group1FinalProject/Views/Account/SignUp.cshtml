@@ -1,4 +1,4 @@
-﻿@using Group1FinalProject.Models
+@using Group1FinalProject.Models
 
 @model Group1FinalProject.Models.SignUpViewModel
 @{
@@ -9,76 +9,82 @@
 
    @using (Html.BeginForm(actionName:"SignUp", "Account", FormMethod.Post))
      {
+          if (Model.Success == true && Model.ErrorMessage == "")
+                  {
+                      <div class="info">
+                          <span>Account was successfully made</span>
+                     </div>
+                } 
 
          <div class="row">
              <div class="col-md-6">
                  @Html.Label("First Name")
-
                  @Html.TextBoxFor(x => x.FirstName, new { id = "txtFirstN", @class = "form-control" })
+                 @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
              </div>
              <div class="col-md-6">
                  @Html.Label("Last Name")
-
-                  @Html.TextBoxFor(x => x.LastName, new { id = "txtLastN",@class = "form-control"})
+                 @Html.TextBoxFor(x => x.LastName, new { id = "txtLastN",@class = "form-control"})
+                 @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
              </div>
           </div>
 
             <div class="row">
              <div class="col-md-6">
                  @Html.Label("Email Address")
-
                  @Html.TextBoxFor(x => x.Email, new { id = "txtEmail", @class = "form-control"})
+                 @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
              </div>
              <div class="col-md-6">
                  @Html.Label("Phone Number")
-
                  @Html.TextBoxFor(x => x.PhoneNumber, new { id = "txtPhone",  @class = "form-control"})
+                 @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
              </div>
           </div>
 
             <div class="row">
              <div class="col-md-6">
                  @Html.Label("Address")
-
                  @Html.TextBoxFor(x => x.Address, new { id = "txtAddress", @class = "form-control"})
+                 @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
              </div>
              <div class="col-md-6">
                  @Html.Label("Address 2")
-
                  @Html.TextBoxFor(x => x.Address2, new { id = "txtAddress2", @class = "form-control"})
+                 @Html.ValidationMessageFor(m => m.Address2, "", new { @class = "text-danger" })
              </div>
           </div>
 
             <div class="row">
              <div class="col-md-6">
                  @Html.Label("City")
-
                  @Html.TextBoxFor(x => x.City, new { id = "txtCity", @class = "form-control"})
+                 @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
              </div>
              <div class="col-md-6">
                  @Html.Label("State")
-
                  @Html.TextBoxFor(x => x.State, new { id = "txtState", @class = "form-control"})
+                 @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-danger" })
              </div>
           </div>
 
             <div class="row">
              <div class="col-md-6">
                   @Html.Label("Postal Code")
-
-                   @Html.TextBoxFor(x => x.Zip, new { id = "txtZip", @class = "form-control"})
+                  @Html.TextBoxFor(x => x.Zip, new { id = "txtZip", @class = "form-control"})
+                  @Html.ValidationMessageFor(m => m.Zip, "", new { @class = "text-danger" })
              </div>
              <div class="col-md-6">
                   @Html.Label("Country")
-
-                   @Html.TextBoxFor(x => x.Country, new { id = "txtCountry", @class = "form-control"})
+                  @Html.TextBoxFor(x => x.Country, new { id = "txtCountry", @class = "form-control"})
+                  @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
              </div> 
           </div>
            <div class="row">
              <div class="col-md-6">
                   @Html.Label("Password")
                   @Html.PasswordFor(x => x.Password, new { id = "txtPassword", @class = "form-control"})
-                  
+                  @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })          
              </div>
              <div class="col-md-6">
                 
@@ -90,7 +96,7 @@
 
       <style>
                 input[type=submit] {
-                    background-color: #6495ED;
+                    background-color: #1ABC9C;
                     border: none;
                     color: white;                    
                     padding: 12px 28px;
@@ -99,8 +105,8 @@
                 }
                 input[type=button] {
                     background-color: white;
-                    color: #6495ED;    
-                    border-color: #6495ED;
+                    color: #1ABC9C;    
+                    border-color: #1ABC9C;
                     padding: 12px 28px;
                     display: inline-block;
                     margin-bottom: 5px;
@@ -119,6 +125,32 @@
                      background-color: black
 
                  }
+
+                 .field-validation-error {
+		            color: #ff0000;
+	            }
+
+	            .field-validation-valid {
+		            display: none;
+	            }
+
+	            .input-validation-error {
+		            border: 1px solid ##ff0000;
+		            background-color: ##FF0000;
+	            }
+
+	            .validation-summary-errors {
+		            font-weight: bold;
+		            color: #ff0000;
+	            }
+
+	            .validation-summary-valid {
+		            display: none;
+                }
+
+                input.input-validation-error {
+                    border: 1px solid #e80c4d !important;
+                }
 
                
                  <script sre="//code.jquery.com/jquery-3.5.1.min.js" type="text/javascript">
