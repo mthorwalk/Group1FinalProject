@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Group1FinalProject.Models;
 using Group1FinalProject.Helpers;
 namespace Group1FinalProject.Controllers
@@ -26,7 +26,13 @@ namespace Group1FinalProject.Controllers
         {
             ValidationHelper validationHelper = new ValidationHelper();
             signInViewModel = validationHelper.validateSignIn(signInViewModel);
-           
+
+            if (signInViewModel.Success == true)
+            {
+                DatabaseFunctions databaseFunctions = new DatabaseFunctions(Configuration);
+                SignUpViewModel signUpViewModel = databaseFunctions.GetCustomer(signInViewModel);
+            }
+
             return View(signInViewModel);
         }
 
@@ -44,8 +50,12 @@ namespace Group1FinalProject.Controllers
         {
             ValidationHelper validationHelper = new ValidationHelper();
             signUpViewModel = validationHelper.validateSignUp(signUpViewModel);
-            DatabaseFunctions databaseFunctions = new DatabaseFunctions(Configuration);
-            databaseFunctions.AddCustomer(signUpViewModel);
+            if (signUpViewModel.Success == true)
+            {
+                DatabaseFunctions databaseFunctions = new DatabaseFunctions(Configuration);
+                databaseFunctions.AddCustomer(signUpViewModel);
+                
+            }
             return View(signUpViewModel);
         }
 
