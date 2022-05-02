@@ -122,12 +122,11 @@ namespace Group1FinalProject.Controllers
 
         public IActionResult SearchResults(string searchString)
         {
-            TempData["SearchString"] = searchString;
-            TempData["HasResults"] = searchResults.Count;
-
             searchResults.Clear();
+            TempData["SearchString"] = searchString;
             string searchQuery = "Select * FROM product WHERE name like \'%" + searchString + "%\'";
             AddProducts(searchQuery, searchResults);
+            TempData["HasResults"] = searchResults.Count;
 
             return View(searchResults);
         }
