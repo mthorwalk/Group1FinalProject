@@ -76,19 +76,6 @@ button.accept-policy {
     top: 15px;
 }
 
-.container-fluid input[type=text] {
-    font-size: 1.5rem;
-    border-radius: 1rem;
-    width: 35rem;
-    position: absolute;
-    top: 15px;
-    right: 19rem;
-    text-indent: 1rem;
-    padding: 0.1rem;
-    border: solid white;
-    background-color: white;
-}
-
 .dropdown-button {
     border-radius: 1rem;
     padding: 0.5rem;

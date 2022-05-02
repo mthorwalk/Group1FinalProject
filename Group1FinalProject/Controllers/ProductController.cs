@@ -22,6 +22,7 @@ namespace Group1FinalProject.Controllers
         private static IList<Product> legos = new List<Product>();
         private static IList<Product> puzzles = new List<Product>();
         private static IList<Product> squishmallows = new List<Product>();
+        private static IList<Product> searchResults = new List<Product>();
         MySql.Data.MySqlClient.MySqlConnection conn;
         public void AddProducts(string query, IList<Product> list)
         {
@@ -56,7 +57,7 @@ namespace Group1FinalProject.Controllers
 
                     conn.Close();
                 }
-                catch (MySqlException e)
+                catch (MySqlException e) 
                 {
                     Console.WriteLine(e);
                     throw;
@@ -111,11 +112,24 @@ namespace Group1FinalProject.Controllers
             IEnumerable<Product> result = from p in products where p.ProductName.Equals(product.ProductName) select p;
             return View(result.Cast<Product>().ElementAt(0));
         }
+
         public IActionResult AddToCart(int ProductId)
         {
             AddProducts("Select * from product", products);
             IEnumerable<Product> result = from p in products where p.ProductId.Equals(ProductId) select p;
             return RedirectToAction("AddToCart", "Cart", result.Cast<Product>().ElementAt(0));
+        }
+
+        public IActionResult SearchResults(string searchString)
+        {
+            TempData["SearchString"] = searchString;
+            TempData["HasResults"] = searchResults.Count;
+
+            searchResults.Clear();
+            string searchQuery = "Select * FROM product WHERE name like \'%" + searchString + "%\'";
+            AddProducts(searchQuery, searchResults);
+
+            return View(searchResults);
         }
 
         //[HttpPost]
