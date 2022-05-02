@@ -39,7 +39,11 @@
 						</div>
 					</li>
 					<li class="nav-item">
-						<input type="text" placeholder="Search">
+					@using (Html.BeginForm("SearchResults", "Product", FormMethod.Post))
+							{
+								@Html.TextBox("searchString","", 
+									new { style = "font-size: 1.5rem; border-radius: 1rem; border: solid white; width: 35rem; position: absolute; top: 1rem; right: 19rem; text-indent: 1rem; padding: 0.1rem; background-color: white;"})
+							}
 					</li>
 					<li id="sign-in" class="nav-item">
 						<a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">Sign In</a>
