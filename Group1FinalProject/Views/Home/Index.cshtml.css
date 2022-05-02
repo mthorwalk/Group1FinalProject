@@ -1,5 +1,5 @@
 * {
-     font-family: 'Dongle', sans-serif;
+    font-family: 'Dongle', sans-serif;
 }
 
 .shop {
@@ -135,5 +135,30 @@
 }
 
 #amongus-shop-btn {
+    font-size: 3rem;
+}
+
+.aboutus {
+    position: relative;
+}
+
+.aboutus-info {
+    position: absolute;
+    font-weight: bold;
+    font-size: 8rem;
+    color: white;
+    text-shadow: 2px 2px 20px #E1F4F0;
+    width: 80%;
+    left: 5%;
+}
+
+.aboutus-shop-btn-pos {
+    position: absolute;
+    top: 80%;
+    width: 60%;
+    right: 4.6rem;
+}
+
+#aboutus-shop-btn {
     font-size: 3rem;
 }
