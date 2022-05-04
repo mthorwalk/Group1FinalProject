@@ -2,7 +2,7 @@
 
 namespace Group1FinalProject.Models
 {
-    public class CartItem : Product
+    public class CartItemModel : ProductModel
     {
         public int quantity = 1;
         public double productsPrice;

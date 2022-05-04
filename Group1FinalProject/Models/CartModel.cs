@@ -3,11 +3,11 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Group1FinalProject.Models
 {
-    public class Cart
+    public class CartModel
     {
         public double? total;
         public int CartId { get; set; }
-        public IList<CartItem>? CartItems { get; set; }
+        public IList<CartItemModel>? CartItems { get; set; }
         public int? numItems = 0;
         
         [System.ComponentModel.DataAnnotations.DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)] //prints prices with two decimal places
@@ -21,7 +21,7 @@ namespace Group1FinalProject.Models
         {
             double total = 0.0;
 
-            foreach (CartItem i in this.CartItems)
+            foreach (CartItemModel i in this.CartItems)
             {
                 total += i.ProductsPrice;
             }
@@ -39,7 +39,7 @@ namespace Group1FinalProject.Models
         {
             int items = 0;
 
-            foreach (CartItem i in this.CartItems)
+            foreach (CartItemModel i in this.CartItems)
             {
                 items += i.Quantity;
             }

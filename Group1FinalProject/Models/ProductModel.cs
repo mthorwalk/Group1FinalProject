@@ -1,6 +1,6 @@
 ﻿namespace Group1FinalProject.Models
 {
-    public class Product
+    public class ProductModel
     {
         public int ProductId { get; set; }
 

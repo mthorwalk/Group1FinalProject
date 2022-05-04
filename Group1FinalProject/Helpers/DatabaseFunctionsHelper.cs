@@ -10,11 +10,11 @@ using MySql.Data.MySqlClient;
 namespace Group1FinalProject.Helpers
 {
     
-    public class DatabaseFunctions
+    public class DatabaseFunctionsHelper
     {
         private readonly IConfiguration Configuration;
 
-        public DatabaseFunctions(IConfiguration _configuration)
+        public DatabaseFunctionsHelper(IConfiguration _configuration)
         {
             Configuration = _configuration;
         }

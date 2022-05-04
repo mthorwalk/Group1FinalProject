@@ -6,7 +6,7 @@ namespace Group1FinalProject.Controllers
     public class CheckoutController : Controller
     {
         // test data: to be deleted
-        private static IList<CartItem> itemsTest = new List<CartItem>
+        private static IList<CartItemModel> itemsTest = new List<CartItemModel>
         {
             //new CartItem() {ProductId = 87924, ProductName = "Slime Maker Kit for Kids", Price = 12.9, Image = "/images/Picture24.jpeg"},
             //new CartItem() {ProductId = 51120, ProductName = "Squishville Mini Squishmallows 6-Pack Rainbow Dream Squad", Price = 14.97, Image = "/images/Picture6.jpeg"},
@@ -16,9 +16,9 @@ namespace Group1FinalProject.Controllers
         };
 
         // test data: to be deleted
-        private static Checkout cartTest = new Checkout{ CheckoutId = 1, CheckoutItems = itemsTest };
+        private static CheckoutModel cartTest = new CheckoutModel{ CheckoutId = 1, CheckoutItems = itemsTest };
 
-        public IActionResult Index(IList<CartItem> cartItems)
+        public IActionResult Index(IList<CartItemModel> cartItems)
         {
             cartTest.CheckoutItems = cartItems;
             return View("Index", cartTest);

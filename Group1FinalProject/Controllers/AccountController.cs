@@ -29,7 +29,7 @@ namespace Group1FinalProject.Controllers
 
             if (signInViewModel.Success == true)
             {
-                DatabaseFunctions databaseFunctions = new DatabaseFunctions(Configuration);
+                DatabaseFunctionsHelper databaseFunctions = new DatabaseFunctionsHelper(Configuration);
                 SignUpViewModel signUpViewModel = databaseFunctions.GetCustomer(signInViewModel);
             }
 
@@ -52,7 +52,7 @@ namespace Group1FinalProject.Controllers
             signUpViewModel = validationHelper.validateSignUp(signUpViewModel);
             if (signUpViewModel.Success == true)
             {
-                DatabaseFunctions databaseFunctions = new DatabaseFunctions(Configuration);
+                DatabaseFunctionsHelper databaseFunctions = new DatabaseFunctionsHelper(Configuration);
                 databaseFunctions.AddCustomer(signUpViewModel);
                 
             }

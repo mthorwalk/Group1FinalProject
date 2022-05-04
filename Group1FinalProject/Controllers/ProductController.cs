@@ -16,15 +16,15 @@ namespace Group1FinalProject.Controllers
         {
             Configuration = _configuration;
         }
-        private static IList<Product> products = new List<Product>();
-        private static IList<Product> fidgets = new List<Product>();
-        private static IList<Product> funkos = new List<Product>();
-        private static IList<Product> legos = new List<Product>();
-        private static IList<Product> puzzles = new List<Product>();
-        private static IList<Product> squishmallows = new List<Product>();
-        private static IList<Product> searchResults = new List<Product>();
+        private static IList<ProductModel> products = new List<ProductModel>();
+        private static IList<ProductModel> fidgets = new List<ProductModel>();
+        private static IList<ProductModel> funkos = new List<ProductModel>();
+        private static IList<ProductModel> legos = new List<ProductModel>();
+        private static IList<ProductModel> puzzles = new List<ProductModel>();
+        private static IList<ProductModel> squishmallows = new List<ProductModel>();
+        private static IList<ProductModel> searchResults = new List<ProductModel>();
         MySql.Data.MySqlClient.MySqlConnection conn;
-        public void AddProducts(string query, IList<Product> list)
+        public void AddProducts(string query, IList<ProductModel> list)
         {
             if (list.Count < 1)
             {
@@ -39,7 +39,7 @@ namespace Group1FinalProject.Controllers
                     dt.Load(cmd.ExecuteReader());
                     foreach (DataRow row in dt.Rows)
                     {
-                        list.Add(new Product()
+                        list.Add(new ProductModel()
                         {
                             ProductId = row.Field<int>(0),
                             CategoryId = row.Field<int>(1),
@@ -106,18 +106,18 @@ namespace Group1FinalProject.Controllers
             return View(squishmallows);
         }
         
-         public ActionResult DetailedProduct(Product product)
+         public ActionResult DetailedProduct(ProductModel product)
         {
             AddProducts("Select * from product", products);
-            IEnumerable<Product> result = from p in products where p.ProductName.Equals(product.ProductName) select p;
-            return View(result.Cast<Product>().ElementAt(0));
+            IEnumerable<ProductModel> result = from p in products where p.ProductName.Equals(product.ProductName) select p;
+            return View(result.Cast<ProductModel>().ElementAt(0));
         }
 
         public IActionResult AddToCart(int ProductId)
         {
             AddProducts("Select * from product", products);
-            IEnumerable<Product> result = from p in products where p.ProductId.Equals(ProductId) select p;
-            return RedirectToAction("AddToCart", "Cart", result.Cast<Product>().ElementAt(0));
+            IEnumerable<ProductModel> result = from p in products where p.ProductId.Equals(ProductId) select p;
+            return RedirectToAction("AddToCart", "Cart", result.Cast<ProductModel>().ElementAt(0));
         }
 
         public IActionResult SearchResults(string searchString)

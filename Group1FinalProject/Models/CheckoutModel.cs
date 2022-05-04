@@ -1,9 +1,9 @@
 ﻿namespace Group1FinalProject.Models
 {
-    public class Checkout
+    public class CheckoutModel
     {
         public int CheckoutId { get; set; }
-        public IList<CartItem>? CheckoutItems { get; set; }
+        public IList<CartItemModel>? CheckoutItems { get; set; }
         
         [System.ComponentModel.DataAnnotations.DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)] //prints prices with two decimal places
 
@@ -27,7 +27,7 @@
         {
             double total = 0.0;
 
-            foreach (CartItem i in CheckoutItems)
+            foreach (CartItemModel i in CheckoutItems)
             {
                 total += i.CalculateProductsPrice();
             }
