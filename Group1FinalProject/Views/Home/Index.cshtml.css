@@ -11,7 +11,7 @@
     width: 100%;
 }
 
-.sale-info {
+.squishmallow-info {
     position: absolute;
     text-align: center;
     font-weight: bold;
@@ -21,14 +21,15 @@
     left: 10%;
 }
 
-#percent-txt {
-    font-size: 14rem;
-    top: 2%;
+#new-txt {
+    font-size: 8rem;
+    top: 14%;
 }
 
-#sale-txt {
-    font-size: 8rem;
-    top: 32%;
+#squishmallow-txt {
+    font-size: 12rem;
+    top: 29%;
+    left: 6%;
 }
 
 .shop-btn-pos {
