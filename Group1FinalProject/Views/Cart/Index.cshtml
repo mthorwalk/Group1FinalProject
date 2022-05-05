@@ -39,7 +39,6 @@
 					$@Html.DisplayFor(modelItem => product.ProductsPrice)
 				</td>
 				<td id="quantity-buttons">
-					<span>@Html.DisplayFor(modelItem => product.Quantity)</span>
 					<span>@Html.ActionLink("+", "IncreaseQuantity", new {productId = product.ProductId,cartItemId = product.id})</span>
 					<span>@Html.DisplayFor(modelItem => product.Quantity)</span>
 					<span>@Html.ActionLink("-", "DecreaseQuantity", new {productId = product.ProductId, quantity = product.Quantity, cartItemId = product.id})</span>
