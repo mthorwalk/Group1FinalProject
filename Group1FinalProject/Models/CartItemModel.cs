@@ -4,6 +4,8 @@ namespace Group1FinalProject.Models
 {
     public class CartItemModel : ProductModel
     {
+        public int? id { get; set; }
+        public int? cart_id { get; set; }
         public int quantity = 1;
         public double productsPrice;
 
