@@ -1,4 +1,4 @@
-﻿using System.Xml.Schema;
+using System.Xml.Schema;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Group1FinalProject.Models
@@ -6,7 +6,7 @@ namespace Group1FinalProject.Models
     public class CartModel
     {
         public double? total;
-        public int CartId { get; set; }
+        public int? CartId { get; set; }
         public IList<CartItemModel>? CartItems { get; set; }
         public int? numItems = 0;
         
