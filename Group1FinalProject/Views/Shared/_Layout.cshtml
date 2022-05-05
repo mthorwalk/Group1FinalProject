@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8"/>
@@ -12,6 +12,9 @@
 	<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+	@{
+	var s = Context.Request.Cookies.Any(x=>x.Key=="user");
+}
 <header>
 	<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
 		<div class="container-fluid">
@@ -29,6 +32,7 @@
 							<button class="dropdown-button">Categories</button>
 							<div class="categories-content">
 								<a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Shop All Toys</a>
+								<a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">On Sale</a>
 								<a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Fidgets">Fidgets</a>
 								<a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Funkos">Funko Pops</a>
 								<a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Legos">Legos</a>
@@ -44,9 +48,18 @@
 									new { style = "font-size: 1.5rem; border-radius: 1rem; border: solid white; width: 35rem; position: absolute; top: 1rem; right: 19rem; text-indent: 1rem; padding: 0.1rem; background-color: white;"})
 							}
 					</li>
-					<li id="sign-in" class="nav-item">
-						<a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">Sign In</a>
-					</li>
+					
+					@if (s)
+						{
+						  <li id="sign-in" class="nav-item">
+							<a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="SignOut">Log Out</a>
+							</li>
+						} else
+						{
+							<li id="sign-in" class="nav-item">
+							<a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">Sign In</a>
+							</li>
+						}
 					<li id="cart" class="nav-item">
 						<div class="cart-btn">
 							<a asp-area="" asp-controller="Cart" asp-action="Index">
@@ -65,9 +78,10 @@
 	</main>
 </div>
 
+
 <footer class="border-top footer text-muted">
 	<div class="container">
-		&copy; 2022 - Group1FinalProject
+		&copy; 2022 - Group1FinalProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
 	</div>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
