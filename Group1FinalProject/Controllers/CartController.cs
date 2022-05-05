@@ -1,4 +1,5 @@
-﻿using Group1FinalProject.Models;
+using Group1FinalProject.Models;
+using Group1FinalProject.Helpers;
 using Group1FinalProject.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,55 +15,117 @@ namespace Group1FinalProject.Controllers
         // test data: to be deleted
         private static CartModel cartTest = new CartModel { CartId = 1, CartItems = itemsTest };
 
+
+        private readonly IConfiguration Configuration;
+
+
+        public CartController(IConfiguration _configuration)
+        {
+            Configuration = _configuration;
+        }
         public IActionResult Index()
         {
+            if (Request.Cookies["user"] != null)
+            {
+                DatabaseFunctionsHelper databaseFunctions = new DatabaseFunctionsHelper(Configuration);
+                var userID = int.Parse(Request.Cookies["user"]);
+                SignUpViewModel signUpViewModel = databaseFunctions.GetCustomerByID(userID);
+                List<CartItemModel> list = databaseFunctions.getCustomerCartItems(signUpViewModel);
+                
+                CartModel cart = new CartModel();
+                cart.CartItems = list;
+                cart.CartId = signUpViewModel.Id;
+                return View("Index", cart);
+            }
+
             return View("Index", cartTest);
         }
 
-        public IActionResult DeleteProduct(int productId)
+        public IActionResult DeleteProduct(int productId,int? cartItemId)
         {
-            cartTest.CartItems.Remove(cartTest.CartItems.FirstOrDefault(p => p.ProductId == productId));
-            return RedirectToAction("Index");
+            DatabaseFunctionsHelper databaseFunctions = new DatabaseFunctionsHelper(Configuration);
+            if (Request.Cookies["user"] != null)
+            {
+                databaseFunctions.deleteCartItem(cartItemId);
+            } 
+                cartTest.CartItems.Remove(cartTest.CartItems.FirstOrDefault(p => p.ProductId == productId));
+                return RedirectToAction("Index");
+            
+            
         }
 
-        public IActionResult IncreaseQuantity(int productId)
+        public IActionResult IncreaseQuantity(int productId,int? cartItemId)
         {
-            cartTest.CartItems.FirstOrDefault(p => p.ProductId == productId).Quantity++;
-            return RedirectToAction("Index");
-        }
-        public IActionResult DecreaseQuantity(int productId)
-        {
-            if (cartTest.CartItems.FirstOrDefault(p => p.ProductId == productId).Quantity == 1)
+            DatabaseFunctionsHelper databaseFunctions = new DatabaseFunctionsHelper(Configuration);
+            if (Request.Cookies["user"] != null)
             {
-                return DeleteProduct(productId);
+                databaseFunctions.changeQuantity(cartItemId, "+");
+                return RedirectToAction("Index");   
             }
-            else
-            {
-                cartTest.CartItems.FirstOrDefault(p => p.ProductId == productId).Quantity--;
+           
+                cartTest.CartItems.FirstOrDefault(p => p.ProductId == productId).Quantity++;
                 return RedirectToAction("Index");
-            }
+            
+        }
+					
+        public IActionResult DecreaseQuantity(int productId,int quantity, int cartItemId)
+        {
+            DatabaseFunctionsHelper databaseFunctions = new DatabaseFunctionsHelper(Configuration);
+            if (Request.Cookies["user"] != null)
+            {
+                if (quantity == 1)
+                {
+                    databaseFunctions.deleteCartItem(cartItemId);
+
+                } else
+                {
+                    databaseFunctions.changeQuantity(cartItemId, "-");
+                }
+                
+                return RedirectToAction("Index");
+            }           
+                if (cartTest.CartItems.FirstOrDefault(p => p.ProductId == productId).Quantity == 1)
+                {
+                    return DeleteProduct(productId,cartItemId);
+                }
+                else
+                {
+                    cartTest.CartItems.FirstOrDefault(p => p.ProductId == productId).Quantity--;
+                    return RedirectToAction("Index");
+                }
         }
         public IActionResult AddToCart(ProductModel product)
         {
+            int? x = 0;
             CartItemModel ci = new CartItemModel() { ProductId = product.ProductId, ProductName = product.ProductName, CategoryId = product.CategoryId, Manufacturer = product.Manufacturer, 
             Description = product.Description, Dimensions = product.Dimensions, Weight = product.Weight, Rating = product.Rating, 
             Price = product.Price, SKU = product.SKU, Image = product.Image};
-            int contains = 0;
-            foreach(CartItemModel test in cartTest.CartItems)
+            if (Request.Cookies["user"] != null)
             {
-                if(test.ProductId == product.ProductId)
+                DatabaseFunctionsHelper databaseFunctions = new DatabaseFunctionsHelper(Configuration);
+                var userID = int.Parse(Request.Cookies["user"]);
+                ci.cart_id = userID;
+                databaseFunctions.AddCartItem(ci);
+                return RedirectToAction("Index");
+            }
+            else {
+                int contains = 0;
+                foreach (CartItemModel test in cartTest.CartItems)
                 {
-                    contains = 1;
+                    if (test.ProductId == product.ProductId)
+                    {
+                        contains = 1;
+                    }
                 }
+                if (contains == 1)
+                {
+                    IncreaseQuantity(product.ProductId,x);
+                } else
+                {
+                    cartTest.CartItems.Add(ci);
+                }
+                return RedirectToAction("Index");
             }
-            if (contains == 1) 
-            {
-                IncreaseQuantity(product.ProductId);
-            } else
-            {
-                cartTest.CartItems.Add(ci);
-            }
-            return RedirectToAction("Index");
         }
     }
 }
