@@ -1,14 +1,15 @@
 @{
 	ViewData["Title"] = "Home Page";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <body>
 	<div class="shop">
 		<img class="large-img" src="/images/SquishSale.jpeg" alt="Squishmallows">
-		<div id="new-txt" class="squishmallow-info">BRAND NEW</div>
-		<div id="squishmallow-txt" class="squishmallow-info">SQUISHMALLOWS</div>
+		<div id="percent-txt" class="sale-info">50% OFF</div>
+		<div id="sale-txt" class="sale-info">SQUISHMALLOW SALE</div>
 		<div class="shop-btn-pos">
-			<button class="shop-btn" onclick="location.href='@Url.Action("Squishmallows", "Product")'">SHOP NOW</button>
+			<button class="shop-btn">SHOP NOW</button>
 		</div>
 	</div>
 	<div class="pop">
@@ -33,7 +34,7 @@
 		<div id="amongus-txt" class="amongus-info">AMONG US</div>
 		<div id="popit-txt" class="amongus-info">POP IT</div>
 		<div class="amongus-shop-btn-pos">
-			<button id="amongus-shop-btn" class="shop-btn" onclick="location.href = '@Url.Action("Fidgets", "Product")'">SHOP FIDGETS</button>
+			<button id="amongus-shop-btn" class="shop-btn" onclick="location.href='@Url.Action("Fidgets", "Product")'">SHOP NOW</button>
 		</div>
 	</div>
 	<div class="aboutus">
