@@ -2,6 +2,7 @@
 @{
 	ViewData["Title"] = "Cart";
 	Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 <h1>@ViewData["Title"]</h1>
 
@@ -38,12 +39,13 @@
 					$@Html.DisplayFor(modelItem => product.ProductsPrice)
 				</td>
 				<td id="quantity-buttons">
-					<span>@Html.ActionLink("+", "IncreaseQuantity", new {productId = product.ProductId})</span>
 					<span>@Html.DisplayFor(modelItem => product.Quantity)</span>
-					<span>@Html.ActionLink("-", "DecreaseQuantity", new {productId = product.ProductId})</span>
+					<span>@Html.ActionLink("+", "IncreaseQuantity", new {productId = product.ProductId,cartItemId = product.id})</span>
+					<span>@Html.DisplayFor(modelItem => product.Quantity)</span>
+					<span>@Html.ActionLink("-", "DecreaseQuantity", new {productId = product.ProductId, quantity = product.Quantity, cartItemId = product.id})</span>
 				</td>
 				<td>
-					@Html.ActionLink("Remove", "DeleteProduct", new {productId = product.ProductId})
+					@Html.ActionLink("Remove", "DeleteProduct", new {productId = product.ProductId,cartItemId = product.id})
 				</td>
 			</tr>
 		}
