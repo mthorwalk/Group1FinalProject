@@ -7,12 +7,13 @@ namespace Group1FinalProject.Controllers
 {
     public class CartController : Controller
     {
-        // test data: to be deleted
+        // DELETE
         private static IList<CartItemModel> itemsTest = new List<CartItemModel>
         {
+            new CartItemModel() {ProductId = 87924, ProductName = "Slime Maker Kit for Kids", Price = 12.9, Image = "/images/Picture24.jpg"}
         };
 
-        // test data: to be deleted
+        // DELETE
         private static CartModel cartTest = new CartModel { CartId = 1, CartItems = itemsTest };
 
 
