@@ -5,29 +5,28 @@ namespace Group1FinalProject.Controllers
 {
     public class CheckoutController : Controller
     {
-        // test data: to be deleted
+        //DELETE
         private static IList<CartItemModel> itemsTest = new List<CartItemModel>
         {
-            //new CartItem() {ProductId = 87924, ProductName = "Slime Maker Kit for Kids", Price = 12.9, Image = "/images/Picture24.jpeg"},
-            //new CartItem() {ProductId = 51120, ProductName = "Squishville Mini Squishmallows 6-Pack Rainbow Dream Squad", Price = 14.97, Image = "/images/Picture6.jpeg"},
-            //new CartItem() {ProductId = 51120, ProductName = "Squishville Mini Squishmallows 6-Pack Rainbow Dream Squad", Price = 14.97, Image = "/images/Picture6.jpeg"},
-            //new CartItem() {ProductId = 51120, ProductName = "Squishville Mini Squishmallows 6-Pack Rainbow Dream Squad", Price = 14.97, Image = "/images/Picture6.jpeg"},
-            //new CartItem() {ProductId = 51120, ProductName = "Squishville Mini Squishmallows 6-Pack Rainbow Dream Squad", Price = 14.97, Image = "/images/Picture6.jpeg"}
+            new CartItemModel() {ProductId = 87924, ProductName = "Slime Maker Kit for Kids", Price = 12.9, Image = "/images/Picture24.jpg", Quantity = 1}
         };
 
-        // test data: to be deleted
+        // DELETE
         private static CheckoutModel cartTest = new CheckoutModel{ CheckoutId = 1, CheckoutItems = itemsTest };
 
-        public IActionResult Index(IList<CartItemModel> cartItems)
+        public IActionResult Index()
         {
-            cartTest.CheckoutItems = cartItems;
-            return View("Index", cartTest);
-
+            return View(cartTest);
         }
 
         public IActionResult Purchase()
         {
-            return View("Purchase", cartTest);
+            return View(cartTest);
+        }
+
+        public void Summary(double shippingCost)
+        {
+            cartTest.Shipping = shippingCost;
         }
     }
 }
