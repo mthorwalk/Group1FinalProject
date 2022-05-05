@@ -1,26 +1,4 @@
-﻿.table {
-    width: 70%;
-    border: solid 0.1rem #148F77;
-    border-radius: 1rem;
-    border-collapse: separate !important;
-    display: inline-block;
-    background-color: #E1F4F0;
-}
-
-#price {
-    font-size: 1.25rem;
-}
-
-.shipping {
-    display: inline-block;
-    margin-bottom: 3rem;
-}
-
-#five-shipping {
-    margin-left: 4rem;
-}
-
-.summary {
+﻿.summary {
     display: inline-block;
     width: 28%;
     padding: 0.25rem;

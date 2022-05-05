@@ -4,9 +4,10 @@
     {
         public int CheckoutId { get; set; }
         public IList<CartItemModel>? CheckoutItems { get; set; }
-        
-        [System.ComponentModel.DataAnnotations.DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)] //prints prices with two decimal places
 
+        public double Shipping { get; set; }
+
+        [System.ComponentModel.DataAnnotations.DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)] //prints prices with two decimal places
         public double? Taxes
         {
             get { return CalculateTaxes(); }
@@ -42,18 +43,7 @@
         }
         public double CalculateTotal()
         {
-            return (double)(Subtotal + Taxes);
+            return (double)(Subtotal + Taxes + Shipping);
         }
-        public double? PurchaseID
-        {
-            get { return GeneratePurchaseId(); }
-            set { PurchaseID = value; }
-        }
-        public double? GeneratePurchaseId()
-        {
-            double purchaseId = 11569723;
-            return purchaseId;
-        }
-
     }
 }
