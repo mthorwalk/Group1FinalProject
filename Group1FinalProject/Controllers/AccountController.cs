@@ -56,7 +56,6 @@ namespace Group1FinalProject.Controllers
         {
             SignUpViewModel signUpViewModel = new SignUpViewModel();
             return View("SignUp", signUpViewModel);
-            
         }
         
         [HttpPost]
