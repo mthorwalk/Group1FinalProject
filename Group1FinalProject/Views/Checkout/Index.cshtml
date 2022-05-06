@@ -5,44 +5,7 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-@using (Html.BeginForm(actionName: "Purchase", "Checkout", FormMethod.Post))
-{
-	<h2>Shipping*</h2>
-	<div>
-		<div class="shipping">
-			<span>@Html.RadioButtonFor(model => model.Shipping, 0)</span>
-			FREE<br/>Approx. 5-7 Business Days
-		</div>
-		<div class="shipping" id="five-shipping">
-			<span>@Html.RadioButtonFor(model => model.Shipping, 5)</span>
-			$5.00<br/>1-3 Business Days
-		</div>
-	</div>
-
-	<h2>Payment Information</h2>
-	<div>
-		<div class="payment-info">
-			<h3>Card Number</h3>
-			@Html.TextBoxFor(x => x.CardNumber, new {id = "txtCardNumber", @class = "form-control", 
-				style="width: 50%"})
-			@Html.ValidationMessageFor(m => m.CardNumber, "", new {@class = "text-danger"})
-		</div>
-		<div class="payment-info">
-			<h3>Name on Card</h3>
-			@Html.TextBoxFor(x => x.NameOnCard, new {id = "txtNameOnCard", @class = "form-control",
-				style="width: 50%"})
-			@Html.ValidationMessageFor(m => m.NameOnCard, "", new {@class = "text-danger"})
-		</div>
-		<div class="payment-info">
-			<h3>Expiration Date</h3>
-			<p>Format: MM/YYYY</p>
-			@Html.TextBoxFor(x => x.ExpirationDate, new {id = "txtExpirationDate", @class = "form-control",
-				style="width: 50%"})
-			@Html.ValidationMessageFor(m => m.ExpirationDate, "", new {@class = "text-danger"})
-		</div>
-	</div>
-
-	<h2>Review Items</h2>
+<h2>Review Items</h2>
 	<table class="table">
 		<thead>
 		<tr>
@@ -82,7 +45,14 @@
 		</div>
 		<div class="summary-info">
 			Shipping & Handling
-			<span>*</span>
+			@if (Model.Shipping == 0)
+			{
+			<span>FREE</span>
+			}
+			else
+			{
+			<span>$5.00</span>
+			}
 		</div>
 		<div class="summary-info">
 			Taxes
