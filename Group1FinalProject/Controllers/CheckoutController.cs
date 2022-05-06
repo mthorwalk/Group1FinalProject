@@ -15,7 +15,7 @@ namespace Group1FinalProject.Controllers
             Configuration = _configuration;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(double shipping)
         {
             DatabaseFunctionsHelper databaseFunctions = new DatabaseFunctionsHelper(Configuration);
             var userID = int.Parse(Request.Cookies["user"]);
@@ -24,7 +24,13 @@ namespace Group1FinalProject.Controllers
 
             checkout.CartItems = list;
             checkout.CartId = signUpViewModel.Id;
+            checkout.Shipping = shipping;
             return View("Index", checkout);
+        }
+
+        public IActionResult PurchaseInfo()
+        {
+            return View("PurchaseInfo");
         }
 
         public IActionResult Purchase()
