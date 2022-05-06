@@ -166,11 +166,11 @@ namespace Group1FinalProject.Helpers
     public void AddCartItem(CartItemModel cartItem)         
     {
             List<CartItemModel> List = new List<CartItemModel>();
-            List = getCartItemsById(cartItem.ProductId, cartItem.cart_id);
+            List = GetCartItemsById(cartItem.ProductId, cartItem.cart_id);
             if (List.Count == 1)
             {
                 cartItem.id = List[0].id;
-                changeQuantity(cartItem.id, "+");
+                ChangeQuantity(cartItem.id, "+");
             } else if (List.Count == 0)
             {
                 try
@@ -200,7 +200,7 @@ namespace Group1FinalProject.Helpers
 
         }
 
-    public List<CartItemModel> getCartItemsById(int productId,int? CartId)
+    public List<CartItemModel> GetCartItemsById(int productId,int? CartId)
         {
             List<CartItemModel> List = new List<CartItemModel>();
             try
@@ -235,12 +235,9 @@ namespace Group1FinalProject.Helpers
                 Console.WriteLine(e);
                 throw;
             }
-
-            return List;
-
         }
 
-        public List<CartItemModel> getCustomerCartItems(SignUpViewModel signUpViewModel)
+        public List<CartItemModel> GetCustomerCartItems(SignUpViewModel signUpViewModel)
     {
         List<CartItemModel> List = new List<CartItemModel>();
         try
@@ -292,7 +289,7 @@ namespace Group1FinalProject.Helpers
 
     }
 
-     public void changeQuantity(int? cartItemId, string plusOrMinus)
+     public void ChangeQuantity(int? cartItemId, string plusOrMinus)
         {
             try
             {
@@ -321,7 +318,7 @@ namespace Group1FinalProject.Helpers
         }
 
 
-     public void deleteCartItem(int? cartItemId) 
+     public void DeleteCartItem(int? cartItemId) 
         {
             try
             {

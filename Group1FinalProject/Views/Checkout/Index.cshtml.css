@@ -51,3 +51,7 @@
     border: solid #1ABC9C;
     width: 100%;
 }
+
+.payment-info {
+    margin-bottom: 2rem;
+}

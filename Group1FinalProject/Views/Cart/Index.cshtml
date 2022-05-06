@@ -59,7 +59,7 @@
 		</div>
 		<div class="summary-info">
 			Shipping & Handling
-			<span>FREE</span>
+			<span>FREE*</span>
 		</div>
 		<div class="summary-info">
 			Taxes
@@ -70,7 +70,7 @@
 			Estimated Total
 			<span>$@Html.DisplayFor(modelItem => Model.Total)</span>
 		</div>
-		<button id="checkout" class="summary-info">@Html.ActionLink("Checkout", "Index", "Checkout", new { cartItems = @Model.CartItems})</button>
+		<button id="checkout" class="summary-info">@Html.ActionLink("Checkout", "Index", "Checkout")</button>
 	</div>
 	 
 	}

@@ -13,7 +13,7 @@ namespace Group1FinalProject.Models
         public string Email { get; set; }
 
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Phone isn't in the correct format")]
-        [StringLength(15, MinimumLength = 10, ErrorMessage = "Phone number isnt in the correct length")]
+        [StringLength(15, MinimumLength = 10, ErrorMessage = "Phone number isn't in the correct length")]
         public string PhoneNumber { get; set; }
         [Required]
         public string Address { get; set; }
