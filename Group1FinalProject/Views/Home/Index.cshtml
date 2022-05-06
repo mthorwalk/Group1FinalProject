@@ -1,15 +1,14 @@
 @{
 	ViewData["Title"] = "Home Page";
-	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <body>
 	<div class="shop">
 		<img class="large-img" src="/images/SquishSale.jpeg" alt="Squishmallows">
-		<div id="percent-txt" class="sale-info">50% OFF</div>
-		<div id="sale-txt" class="sale-info">SQUISHMALLOW SALE</div>
+		<div id="new-txt" class="squishmallow-info">BRAND NEW</div>
+		<div id="squishmallow-txt" class="squishmallow-info">SQUISHMALLOWS</div>
 		<div class="shop-btn-pos">
-			<button class="shop-btn">SHOP NOW</button>
+			<button class="shop-btn" onclick="location.href='@Url.Action("Squishmallows", "Product")'">SHOP NOW</button>
 		</div>
 	</div>
 	<div class="pop">
@@ -34,13 +33,21 @@
 		<div id="amongus-txt" class="amongus-info">AMONG US</div>
 		<div id="popit-txt" class="amongus-info">POP IT</div>
 		<div class="amongus-shop-btn-pos">
-			<button id="amongus-shop-btn" class="shop-btn" onclick="location.href='@Url.Action("Fidgets", "Product")'">SHOP NOW</button>
+			<button id="amongus-shop-btn" class="shop-btn" onclick="location.href = '@Url.Action("Fidgets", "Product")'">SHOP FIDGETS</button>
 		</div>
 	</div>
-	<div class="aboutus">
-		<img class="large-img" src="/images/aboutUs.jpg" alt="About us">
-		<div class="aboutus-shop-btn-pos">
-			<button id="amongus-shop-btn" class="shop-btn" onclick="location.href='@Url.Action("About", "About")'">ABOUT US</button>
+	
+	<div class="pop">
+		<div class="pop-element">
+			<img class="pop-img" src="/images/aboutUs.jpg" alt="Legos"/>
+			<div id="legos-pos" class="aboutcontact-pop-btn-pos">
+				<button id="legos-btn" class="shop-btn" onclick="location.href='@Url.Action("About", "About")'">ABOUT US</button>
+			</div>
 		</div>
-    </div>
+		<div class="pop-element">
+			<img id="puzzles-img" class="pop-img" src="/images/ContactUs.jpg" alt="Puzzle pieces"/>
+			<div id="puzzles-pos" class="aboutcontact-pop-btn-pos">
+				<button id="puzzles-btn" class="shop-btn" onclick="location.href='@Url.Action("Contact", "Contact")'">CONTACT US</button>
+			</div>
+		</div>
 </body>
