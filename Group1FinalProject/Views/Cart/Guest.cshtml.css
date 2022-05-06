@@ -1,0 +1,11 @@
+﻿.guest {
+    margin: auto;
+    text-align: center;
+    font-size: 2rem;
+}
+
+#account-btn {
+    background-color: #1ABC9C;
+    border-radius: 1rem;
+    border: solid #1ABC9C;
+}

@@ -1,10 +1,7 @@
 ﻿namespace Group1FinalProject.Models
 {
-    public class CheckoutModel
+    public class CheckoutModel : CartModel
     {
-        public int CheckoutId { get; set; }
-        public IList<CartItemModel>? CheckoutItems { get; set; }
-
         public double Shipping { get; set; }
 
         [System.ComponentModel.DataAnnotations.DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)] //prints prices with two decimal places
@@ -28,7 +25,7 @@
         {
             double total = 0.0;
 
-            foreach (CartItemModel i in CheckoutItems)
+            foreach (CartItemModel i in CartItems)
             {
                 total += i.CalculateProductsPrice();
             }
@@ -36,12 +33,12 @@
             return total;
         }
         [System.ComponentModel.DataAnnotations.DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)] //prints prices with two decimal places
-        public double? Total
+        public new double? Total
         {
             get { return CalculateTotal(); }
             set { Total = value; }
         }
-        public double CalculateTotal()
+        public new double CalculateTotal()
         {
             return (double)(Subtotal + Taxes + Shipping);
         }

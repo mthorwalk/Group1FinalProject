@@ -1,32 +1,41 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Group1FinalProject.Models;
+using Group1FinalProject.Helpers;
 
 namespace Group1FinalProject.Controllers
 {
     public class CheckoutController : Controller
     {
-        //DELETE
-        private static IList<CartItemModel> itemsTest = new List<CartItemModel>
-        {
-            new CartItemModel() {ProductId = 87924, ProductName = "Slime Maker Kit for Kids", Price = 12.9, Image = "/images/Picture24.jpg", Quantity = 1}
-        };
+        private CheckoutModel checkout = new CheckoutModel();
 
-        // DELETE
-        private static CheckoutModel cartTest = new CheckoutModel{ CheckoutId = 1, CheckoutItems = itemsTest };
+        private readonly IConfiguration Configuration;
+
+        public CheckoutController(IConfiguration _configuration)
+        {
+            Configuration = _configuration;
+        }
 
         public IActionResult Index()
         {
-            return View(cartTest);
+            DatabaseFunctionsHelper databaseFunctions = new DatabaseFunctionsHelper(Configuration);
+            var userID = int.Parse(Request.Cookies["user"]);
+            SignUpViewModel signUpViewModel = databaseFunctions.GetCustomerByID(userID);
+            List<CartItemModel> list = databaseFunctions.GetCustomerCartItems(signUpViewModel);
+
+            checkout.CartItems = list;
+            checkout.CartId = signUpViewModel.Id;
+            return View("Index", checkout);
         }
 
         public IActionResult Purchase()
         {
-            return View(cartTest);
+            return View("Purchase");
         }
 
         public void Summary(double shippingCost)
         {
-            cartTest.Shipping = shippingCost;
+
+            checkout.Shipping = shippingCost;
         }
     }
 }
