@@ -31,11 +31,5 @@ namespace Group1FinalProject.Controllers
         {
             return View("Purchase");
         }
-
-        public void Summary(double shippingCost)
-        {
-
-            checkout.Shipping = shippingCost;
-        }
     }
 }
