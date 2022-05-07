@@ -347,7 +347,7 @@ namespace Group1FinalProject.Helpers
          SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
          mail.From = new MailAddress("toyszoidtoys@gmail.com");
          mail.To.Add(user.Email);
-         mail.Subject = "Test";
+         mail.Subject = "Order Confirmation from Toyszoid";
          string text = "<html><h2>Thank you for your purchase!</h2><p>Dear " + user.FirstName + ", below you can find your purchase and shipping details.</p>";
          text += "<h4>Shipping Address</h4>";
          text += "<p>" + user.Address.ToString() + "</p>" + "<p>" + user.City.ToString() + ", " + user.State.ToString() + " " + user.Zip.ToString() + "</p>";
