@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
+using System.Net.Mail;
 using MySql.Data.MySqlClient;
 
 namespace Group1FinalProject.Helpers
@@ -337,6 +338,36 @@ namespace Group1FinalProject.Helpers
                 Console.WriteLine(e);
                 throw;
             }
+        }
+
+     public void emailConfirmation(SignUpViewModel user, CheckoutModel checkout)
+     {
+         DatabaseFunctionsHelper databaseFunctions = new DatabaseFunctionsHelper(Configuration);
+         MailMessage mail = new MailMessage();
+         SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
+         mail.From = new MailAddress("toyszoidtoys@gmail.com");
+         mail.To.Add(user.Email);
+         mail.Subject = "Test";
+         string text = "<html><h2>Thank you for your purchase!</h2><p>Dear " + user.FirstName + ", below you can find your purchase and shipping details.</p>";
+         text += "<h4>Shipping Address</h4>";
+         text += "<p>" + user.Address.ToString() + "</p>" + "<p>" + user.City.ToString() + ", " + user.State.ToString() + " " + user.Zip.ToString() + "</p>";
+         text += "<table><tr><th>Quantity</th><th>Product Name</th><th>Price</th></tr>";
+         foreach (CartItemModel item in checkout.CartItems)
+         {
+             text += "<tr><td>" + item.Quantity.ToString() + "</td><td>" + item.ProductName.ToString() + "</td><td>$" + String.Format("{0:0.00}", item.ProductsPrice) + "</td></tr>";
+             databaseFunctions.DeleteCartItem(item.id);
+         }
+         text += "</table><break>";
+         text += "<table><tr><td>Subtotal:</td><td>$" + String.Format("{0:0.00}", checkout.Subtotal) + "</td></tr>";
+         text += "<tr><td>Taxes:</td><td>$" + String.Format("{0:0.00}", checkout.Taxes) + "</td></tr>";
+         text += "<tr><td>Shipping:</td><td>$" + String.Format("{0:0.00}", checkout.shipping) + "</td></tr>";
+         text += "<tr><td>Total:</td><td>$" + String.Format("{0:0.00}", checkout.Total) + "</td></tr></table>";
+         mail.Body = text;
+         smtpServer.Port = 25;
+         smtpServer.Credentials = new System.Net.NetworkCredential("toyszoidtoys", "ToysZoid123!");
+         smtpServer.EnableSsl = true;
+         mail.IsBodyHtml = true;
+         smtpServer.Send(mail);
         }
 }
 

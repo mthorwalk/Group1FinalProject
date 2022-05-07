@@ -63,6 +63,5 @@
 			Total
 			<span>$@Html.DisplayFor(modelItem => Model.Total)</span>
 		</div>
-		<input type="submit" value="Purchase" id="purchase" class="summary-info" onclick="location.href = '@Url.Action("Purchase", "Checkout")'"/>
+		<input type="submit" value="Purchase" id="purchase" class="summary-info" onclick="location.href = '@Url.Action("Purchase", "Checkout", new {shipping = Model.shipping})'"/>
 	</div>
-}
