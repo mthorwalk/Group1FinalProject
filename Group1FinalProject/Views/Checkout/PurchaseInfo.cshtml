@@ -55,12 +55,10 @@
 	<script>
 		if (document.getElementById("free").checked == true) {
 			shippingCost = 0;
-		} else {
+		} else if (document.getElementById("five").checked == true){
 			shippingCost = 5;
 		}
 	</script>
 
-	<input type="submit" value="Review Items" onclick="location.href = '@Url.Action("Index", "Checkout", new {shipping = shippingCost})'"/>
-}
-	
+	<input id="review-btn" type="submit" value="Review Items" onclick="location.href = '@Url.Action("Index", "Checkout", new {shipping = shippingCost})'"/>
 }
