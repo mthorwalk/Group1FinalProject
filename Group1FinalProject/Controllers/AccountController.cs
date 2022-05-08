@@ -22,6 +22,7 @@ namespace Group1FinalProject.Controllers
 
         [HttpPost]
         //[ActionName("SignIn")]
+
         public ActionResult Index(SignInViewModel signInViewModel)
         {
             ValidationHelper validationHelper = new ValidationHelper();
@@ -35,6 +36,9 @@ namespace Group1FinalProject.Controllers
                 options.Expires = DateTime.Now.AddDays(2);
                 Response.Cookies.Append("user",signUpViewModel.Id.ToString(),options);
                 
+
+                return View("~/Views/Home/Index.cshtml");
+               
             }
 
             return View(signInViewModel);
@@ -70,6 +74,7 @@ namespace Group1FinalProject.Controllers
                     CookieOptions options = new CookieOptions();
                     options.Expires = DateTime.Now.AddDays(2);
                     Response.Cookies.Append("user", signUpViewModel.Id.ToString(), options);
+                    return View("~/Views/Home/Index.cshtml");
                 }
                 
             }
