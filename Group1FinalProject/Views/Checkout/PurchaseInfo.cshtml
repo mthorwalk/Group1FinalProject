@@ -60,5 +60,28 @@
 		}
 	</script>
 
-	<input type="submit" value="Review Items" onclick="location.href = '@Url.Action("Index", "Checkout", new {shipping = shippingCost})'"/>
+	<input id="review-btn" type="submit" value="Review Items" onclick="location.href = '@Url.Action("Index", "Checkout", new {shipping = shippingCost})'"/>
 }
+<style>
+	.shipping {
+		display: inline-block;
+		margin-bottom: 3rem;
+	}
+
+	#five-shipping {
+		margin-left: 4rem;
+	}
+
+	.payment-info {
+		margin-bottom: 2rem;
+	}
+
+	#review-btn {
+		background-color: #1ABC9C;
+		color: white;
+		border-radius: 1rem;
+		border: solid #1ABC9C;
+		width: 25%;
+		margin-left: 12.5%
+	}
+</style>

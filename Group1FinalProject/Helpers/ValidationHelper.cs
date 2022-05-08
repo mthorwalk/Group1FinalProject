@@ -81,6 +81,10 @@ namespace Group1FinalProject.Helpers
             {
                 signUpViewModel.ErrorMessage += "Password is Empty,";
             }
+            if (string.IsNullOrEmpty(signUpViewModel.Address2))
+            {
+                signUpViewModel.Address2 = "n/a";
+            }
 
             if (!string.IsNullOrEmpty(signUpViewModel.PhoneNumber))
             {
