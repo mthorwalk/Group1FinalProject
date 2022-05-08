@@ -15,7 +15,8 @@ namespace Group1FinalProject.Controllers
             Configuration = _configuration;
         }
 
-        public IActionResult Index(double shipping)
+        [HttpPost]
+        public IActionResult Index(double shipping, string cardNumber, string nameOnCard, string expirationDate)
         {
             DatabaseFunctionsHelper databaseFunctions = new DatabaseFunctionsHelper(Configuration);
             var userID = int.Parse(Request.Cookies["user"]);
@@ -25,7 +26,18 @@ namespace Group1FinalProject.Controllers
             checkout.CartItems = list;
             checkout.CartId = signUpViewModel.Id;
             checkout.Shipping = shipping;
-            return View("Index", checkout);
+            checkout.CardNumber = cardNumber;
+            checkout.NameOnCard = nameOnCard;
+            checkout.ExpirationDate = expirationDate;
+
+            ValidationHelper validationHelper = new ValidationHelper();
+            checkout = validationHelper.ValidatePayment(checkout);
+            if (checkout.Success == true)
+            {
+                return View("Index", checkout);
+            }
+
+            return View("PurchaseInfo");
         }
 
         public IActionResult PurchaseInfo()

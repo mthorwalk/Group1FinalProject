@@ -9,10 +9,14 @@ namespace Group1FinalProject.Helpers
     {
         public const string PhoneFormat = @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$";
         public const string EmailFormat = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
+        public const string CardNumberFormat = @"[0-9]{15,16}";
+        public const string ExpirationDateFormat = @"(0[1-9]|10|11|12)/20[0-9]{2}$";
+
         public SignInViewModel validateSignIn(SignInViewModel signInViewModel)
-    {
-        signInViewModel.Success = false;
-        signInViewModel.ErrorMessage = "";
+        {
+            signInViewModel.Success = false;
+            signInViewModel.ErrorMessage = "";
+
             if (string.IsNullOrEmpty(signInViewModel.Email))
             {
                 signInViewModel.ErrorMessage += "Email is Empty";
@@ -32,8 +36,8 @@ namespace Group1FinalProject.Helpers
             {
                 signInViewModel.Success = true;
             }
-        return signInViewModel;
-    }
+            return signInViewModel;
+        }
 
 
         public SignUpViewModel validateSignUp(SignUpViewModel signUpViewModel)
@@ -104,8 +108,47 @@ namespace Group1FinalProject.Helpers
             }
 
             return signUpViewModel;
-        }   
+        }
 
+        public CheckoutModel ValidatePayment(CheckoutModel checkoutModel)
+        {
+            checkoutModel.Success = false;
+            checkoutModel.ErrorMessage = "";
+
+            if (string.IsNullOrEmpty(checkoutModel.CardNumber))
+            {
+                checkoutModel.ErrorMessage += "Card number is empty. ";
+            }
+            else if (!Regex.IsMatch(checkoutModel.CardNumber, CardNumberFormat))
+            {
+                checkoutModel.ErrorMessage += "Card number is in wrong format. ";
+            }
+
+            if (string.IsNullOrEmpty(checkoutModel.NameOnCard))
+            {
+                checkoutModel.ErrorMessage += "Name on card is empty. ";
+            }
+            else if (!(checkoutModel.NameOnCard.Length <= 60))
+            {
+                checkoutModel.ErrorMessage += "Name on card is too long. ";
+            }
+
+            if (string.IsNullOrEmpty(checkoutModel.ExpirationDate))
+            {
+                checkoutModel.ErrorMessage += "Expiration date is empty. ";
+            }
+            else if (!Regex.IsMatch(checkoutModel.ExpirationDate, ExpirationDateFormat))
+            {
+                checkoutModel.ErrorMessage += "Expiration date is in wrong format. ";
+            }
+
+            if (string.IsNullOrEmpty(checkoutModel.ErrorMessage))
+            {
+                checkoutModel.Success = true;
+            }
+
+            return checkoutModel;
+        }
 
     }
 }

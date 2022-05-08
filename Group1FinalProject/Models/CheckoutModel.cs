@@ -12,12 +12,16 @@ namespace Group1FinalProject.Models
         }
 
         [RegularExpression(@"[0-9]{15,16}", ErrorMessage = "Credit card number isn't in the correct format")]
-        public int? CardNumber { get; set; }
+        public string? CardNumber { get; set; }
 
         public string? NameOnCard { get; set; }
 
         [RegularExpression(@"(0[1-9]|10|11|12)/20[0-9]{2}$", ErrorMessage = "Expiration date should be in format MM/YYYY")]
         public string? ExpirationDate { get; set; }
+
+        public Boolean? Success { get; set; }
+
+        public string? ErrorMessage { get; set; }
 
         [System.ComponentModel.DataAnnotations.DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)] //prints prices with two decimal places
         public double? Taxes
@@ -25,6 +29,7 @@ namespace Group1FinalProject.Models
             get { return CalculateTaxes(); }
             set { Taxes = value; }
         }
+
         public double? CalculateTaxes()
         {
             double? taxes = Subtotal * 0.055;
