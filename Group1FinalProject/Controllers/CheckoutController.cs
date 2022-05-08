@@ -7,8 +7,6 @@ namespace Group1FinalProject.Controllers
 {
     public class CheckoutController : Controller
     {
-        private CheckoutModel checkout = new CheckoutModel();
-
         private readonly IConfiguration Configuration;
 
         public CheckoutController(IConfiguration _configuration)
@@ -16,22 +14,36 @@ namespace Group1FinalProject.Controllers
             Configuration = _configuration;
         }
 
-        public IActionResult Index(double shipping)
+        public IActionResult Index(CheckoutModel checkoutModel)
+        {
+            return View(checkoutModel);
+        }
+
+        public ActionResult PurchaseInfo()
+        {
+            return View("PurchaseInfo");
+        }
+
+        [HttpPost]
+        public ActionResult PurchaseInfo(CheckoutModel checkoutModel)
         {
             DatabaseFunctionsHelper databaseFunctions = new DatabaseFunctionsHelper(Configuration);
             var userID = int.Parse(Request.Cookies["user"]);
             SignUpViewModel signUpViewModel = databaseFunctions.GetCustomerByID(userID);
             List<CartItemModel> list = databaseFunctions.GetCustomerCartItems(signUpViewModel);
 
-            checkout.CartItems = list;
-            checkout.CartId = signUpViewModel.Id;
-            checkout.Shipping = shipping;
-            return View("Index", checkout);
-        }
+            checkoutModel.CartItems = list;
+            checkoutModel.CartId = signUpViewModel.Id;
 
-        public IActionResult PurchaseInfo()
-        {
-            return View("PurchaseInfo");
+            ValidationHelper validationHelper = new ValidationHelper();
+            checkoutModel = validationHelper.ValidatePayment(checkoutModel);
+
+            if (checkoutModel.Success == true)
+            {
+                return View("~/Views/Checkout/Index.cshtml", checkoutModel);
+            }
+
+            return View(checkoutModel);
         }
 
         public IActionResult Purchase(double shipping)
