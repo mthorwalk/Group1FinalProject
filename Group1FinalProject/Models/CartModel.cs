@@ -39,9 +39,12 @@ namespace Group1FinalProject.Models
         {
             int items = 0;
 
-            foreach (CartItemModel i in this.CartItems)
+            if (this.CartItems != null)
             {
-                items += i.Quantity;
+                foreach (CartItemModel i in this.CartItems)
+                {
+                    items += i.Quantity;
+                }
             }
 
             return items;
