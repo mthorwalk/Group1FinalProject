@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net.Mail;
+using Microsoft.AspNetCore.Mvc;
 using Group1FinalProject.Models;
 using Group1FinalProject.Helpers;
 
@@ -45,8 +46,17 @@ namespace Group1FinalProject.Controllers
             return View(checkoutModel);
         }
 
-        public IActionResult Purchase()
+        public IActionResult Purchase(double shipping)
         {
+            var userID = int.Parse(Request.Cookies["user"]);
+            DatabaseFunctionsHelper databaseFunctions = new DatabaseFunctionsHelper(Configuration);
+            SignUpViewModel user = databaseFunctions.GetCustomerByID(userID);
+            SignUpViewModel signUpViewModel = databaseFunctions.GetCustomerByID(userID);
+            List<CartItemModel> list = databaseFunctions.GetCustomerCartItems(signUpViewModel);
+            checkout.CartItems = list;
+            checkout.CartId = signUpViewModel.Id;
+            checkout.Shipping = shipping;
+            databaseFunctions.emailConfirmation(user, checkout);
             return View("Purchase");
         }
     }
