@@ -1,17 +1,18 @@
-﻿@model Group1FinalProject.Models.CheckoutModel
+﻿@using Microsoft.CodeAnalysis.VisualBasic.Syntax
+@model Group1FinalProject.Models.CheckoutModel
 @{
 	ViewData["Title"] = "Checkout";
 	Layout = "~/Views/Shared/_Layout.cshtml";
-	var shippingCost = 0;
+	var shippingCost = -1;
 }
 <h1>@ViewData["Title"]</h1>
 
-@using (Html.BeginForm(actionName: "Index", "Checkout", FormMethod.Post))
+@using (Html.BeginForm(actionName: "PurchaseInfo", "Checkout", FormMethod.Post))
 {
 	<h2>Shipping</h2>
 	<div>
 		<div class="shipping">
-			<input type="radio" name="shipping" id="free" value="0.0" runat="server"/>
+			<input type="radio" name="shipping" id="free" value="0.0" runat="server" onclick=""/>
 			FREE<br/>Approx. 5-7 Business Days
 		</div>
 		<div class="shipping" id="five-shipping">
@@ -24,41 +25,29 @@
 	<div>
 		<div class="payment-info">
 			<h3>Card Number</h3>
-			@Html.TextBoxFor(x => x.CardNumber, new
-			{
-				id = "txtCardNumber", @class = "form-control",
-				style = "width: 50%"
-			})
-			@Html.ValidationMessageFor(m => m.CardNumber, "", new {@class = "text-danger"})
+			@Html.TextBoxFor(x => x.CardNumber, new { id = "txtCardNumber", @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.CardNumber, "", new { @class = "text-danger" })
 		</div>
 		<div class="payment-info">
 			<h3>Name on Card</h3>
-			@Html.TextBoxFor(x => x.NameOnCard, new
-			{
-				id = "txtNameOnCard", @class = "form-control",
-				style = "width: 50%"
-			})
-			@Html.ValidationMessageFor(m => m.NameOnCard, "", new {@class = "text-danger"})
+			@Html.TextBoxFor(x => x.NameOnCard, new { id = "txtNameOnCard", @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.NameOnCard, "", new { @class = "text-danger" })
 		</div>
 		<div class="payment-info">
 			<h3>Expiration Date</h3>
 			<p>Format: MM/YYYY</p>
-			@Html.TextBoxFor(x => x.ExpirationDate, new
-			{
-				id = "txtExpirationDate", @class = "form-control",
-				style = "width: 50%"
-			})
-			@Html.ValidationMessageFor(m => m.ExpirationDate, "", new {@class = "text-danger"})
+			@Html.TextBoxFor(x => x.ExpirationDate, new { id = "txtExpirationDate", @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.ExpirationDate, "", new { @class = "text-danger" })
 		</div>
 	</div>
 
 	<script>
-		if (document.getElementById("free").checked == true) {
-			shippingCost = 0;
-		} else {
+		if (document.getElementById("five").checked == true) {
 			shippingCost = 5;
+		} else {
+			shippingCost = 0;
 		}
 	</script>
 
-	<input type="submit" value="Review Items" onclick="location.href = '@Url.Action("Index", "Checkout", new {shipping = shippingCost})'"/>
+	<input id="review-btn" type="submit" value="Review Items"/>
 }

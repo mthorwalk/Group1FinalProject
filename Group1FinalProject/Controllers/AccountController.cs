@@ -8,24 +8,21 @@ namespace Group1FinalProject.Controllers
     public class AccountController : Controller
     {
         private readonly IConfiguration Configuration;
-        
 
         public AccountController(IConfiguration _configuration)
         {
             Configuration = _configuration;
         }
+
         public ActionResult Index()
         {
             SignInViewModel signInViewModel = new SignInViewModel();
             return View("Index", signInViewModel);
         }
 
-
-
         [HttpPost]
         //[ActionName("SignIn")]
 
-      
         public ActionResult Index(SignInViewModel signInViewModel)
         {
             ValidationHelper validationHelper = new ValidationHelper();

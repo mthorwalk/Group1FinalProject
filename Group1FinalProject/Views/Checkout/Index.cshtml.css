@@ -11,15 +11,6 @@
     font-size: 1.25rem;
 }
 
-.shipping {
-    display: inline-block;
-    margin-bottom: 3rem;
-}
-
-#five-shipping {
-    margin-left: 4rem;
-}
-
 .summary {
     display: inline-block;
     width: 28%;
@@ -50,8 +41,4 @@
     border-radius: 1rem;
     border: solid #1ABC9C;
     width: 100%;
-}
-
-.payment-info {
-    margin-bottom: 2rem;
 }
