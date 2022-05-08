@@ -35,10 +35,9 @@ namespace Group1FinalProject.Controllers
                 CookieOptions options = new CookieOptions();
                 options.Expires = DateTime.Now.AddDays(2);
                 Response.Cookies.Append("user",signUpViewModel.Id.ToString(),options);
-                
 
-                return View("~/Views/Home/Index.cshtml");
-               
+                return RedirectToAction("Index", "Home");
+
             }
 
             return View(signInViewModel);
@@ -50,7 +49,7 @@ namespace Group1FinalProject.Controllers
             {
                 Response.Cookies.Delete("user");
             }
-            return View("~/Views/Home/Index.cshtml");
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult SignUp()
@@ -74,7 +73,9 @@ namespace Group1FinalProject.Controllers
                     CookieOptions options = new CookieOptions();
                     options.Expires = DateTime.Now.AddDays(2);
                     Response.Cookies.Append("user", signUpViewModel.Id.ToString(), options);
-                    return View("~/Views/Home/Index.cshtml");
+
+                    return RedirectToAction("Index", "Home");
+
                 }
                 
             }
