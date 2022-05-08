@@ -6,8 +6,6 @@ namespace Group1FinalProject.Controllers
 {
     public class CheckoutController : Controller
     {
-        private CheckoutModel checkout = new CheckoutModel();
-
         private readonly IConfiguration Configuration;
 
         public CheckoutController(IConfiguration _configuration)
@@ -15,34 +13,36 @@ namespace Group1FinalProject.Controllers
             Configuration = _configuration;
         }
 
+        public IActionResult Index(CheckoutModel checkoutModel)
+        {
+            return View(checkoutModel);
+        }
+
+        public ActionResult PurchaseInfo()
+        {
+            return View("PurchaseInfo");
+        }
+
         [HttpPost]
-        public IActionResult Index(double shipping, string cardNumber, string nameOnCard, string expirationDate)
+        public ActionResult PurchaseInfo(CheckoutModel checkoutModel)
         {
             DatabaseFunctionsHelper databaseFunctions = new DatabaseFunctionsHelper(Configuration);
             var userID = int.Parse(Request.Cookies["user"]);
             SignUpViewModel signUpViewModel = databaseFunctions.GetCustomerByID(userID);
             List<CartItemModel> list = databaseFunctions.GetCustomerCartItems(signUpViewModel);
 
-            checkout.CartItems = list;
-            checkout.CartId = signUpViewModel.Id;
-            checkout.Shipping = shipping;
-            checkout.CardNumber = cardNumber;
-            checkout.NameOnCard = nameOnCard;
-            checkout.ExpirationDate = expirationDate;
+            checkoutModel.CartItems = list;
+            checkoutModel.CartId = signUpViewModel.Id;
 
             ValidationHelper validationHelper = new ValidationHelper();
-            checkout = validationHelper.ValidatePayment(checkout);
-            if (checkout.Success == true)
+            checkoutModel = validationHelper.ValidatePayment(checkoutModel);
+
+            if (checkoutModel.Success == true)
             {
-                return View("Index", checkout);
+                return View("~/Views/Checkout/Index.cshtml", checkoutModel);
             }
 
-            return View("PurchaseInfo");
-        }
-
-        public IActionResult PurchaseInfo()
-        {
-            return View("PurchaseInfo");
+            return View(checkoutModel);
         }
 
         public IActionResult Purchase()

@@ -11,11 +11,14 @@ namespace Group1FinalProject.Models
             set { shipping = value; }
         }
 
+        [Required]
         [RegularExpression(@"[0-9]{15,16}", ErrorMessage = "Credit card number isn't in the correct format")]
         public string? CardNumber { get; set; }
 
+        [Required]
         public string? NameOnCard { get; set; }
 
+        [Required]
         [RegularExpression(@"(0[1-9]|10|11|12)/20[0-9]{2}$", ErrorMessage = "Expiration date should be in format MM/YYYY")]
         public string? ExpirationDate { get; set; }
 
@@ -47,9 +50,12 @@ namespace Group1FinalProject.Models
         {
             double total = 0.0;
 
-            foreach (CartItemModel i in CartItems)
+            if (CartItems != null)
             {
-                total += i.CalculateProductsPrice();
+                foreach (CartItemModel i in CartItems)
+                {
+                    total += i.CalculateProductsPrice();
+                }
             }
 
             return total;
